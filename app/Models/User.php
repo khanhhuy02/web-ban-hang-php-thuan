@@ -13,7 +13,29 @@ class User extends database
         self::$password = $password;
     }
 
-    public static function login($email, $password)
+    public static function loginUser($email, $password)
+    {
+        self::$email = $email;
+        self::$password = $password;
+
+        $getUser = "SELECT * FROM users WHERE email = :email AND role = 0 ";
+        $params = [
+            'email' => self::$email
+        ];
+
+        $user = parent::queryOne($getUser, $params);
+
+        if ($user && password_verify(self::$password, $user['password'])) {
+            // Password khớp, đăng nhập thành công
+            return $user;
+        } else {
+            // Password không khớp hoặc không tìm thấy người dùng
+            return false;
+        }
+    }
+
+    
+    public static function loginAdmin($email, $password)
     {
         self::$email = $email;
         self::$password = $password;

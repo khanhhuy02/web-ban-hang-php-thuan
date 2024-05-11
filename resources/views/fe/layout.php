@@ -11,7 +11,7 @@ switch ($titleTag) {
         // include_once __DIR__ . "/inc/page/menu.php"; // thanh menu
 
         include_once $ViewPast;
-        // include_once __DIR__ . "/inc/footer.php";
+        include_once __DIR__ . "/inc/footer.php";
         break;
 
 

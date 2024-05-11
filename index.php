@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-
+// $_SESSION['logged_in'] = true;
 use Support\src\Route;
 
 include_once  __DIR__ . "/routes/autoload.php";

@@ -14,11 +14,12 @@ class LoginController extends Controller
 
         return $this->view("be.login.AdminLogin", ['titleTag' => $titleTag]);
     }
+
     public function login($email, $password)
     {
         $email = trim(strip_tags($_POST['email']));
         $password = trim(strip_tags($_POST['password']));
-        $login = User::login($email, $password);
+        $login = User::loginAdmin($email, $password);
         if ($login['role'] === 1) {
             $_SESSION['role'] = $login['role'];
             $_SESSION['name'] = $login['name'];
@@ -42,7 +43,7 @@ class LoginController extends Controller
         return $this->view("fe.login.AdminRegister", ['titleTag' => $titleTag]);
     }
     // post đăng ký 
-    public function creRegister( $errors =null)
+    public function creRegister($errors = null)
     {
 
         // $errors = array();
@@ -69,25 +70,40 @@ class LoginController extends Controller
         //             $errors['password']['invaild'] = "mật khẩu quá ngắn ";
         //         }
         //     }
-           
+
         // } 
-     
-            $password = $_POST['password'];
-            $options = [
-                'memory_cost' => 1024,
-                'time_cost' => 2,
-                'threads' => 2
-            ];
-            $hashedPassword = password_hash($password, PASSWORD_ARGON2I, $options);
-            $data = [
-                "name" => $_POST['name'],
-                "email" => $_POST['email'],
-                "password" =>  $hashedPassword,
-            ];
 
-            User::creRegister("users", $data);
+        $password = $_POST['password'];
+        $options = [
+            'memory_cost' => 1024,
+            'time_cost' => 2,
+            'threads' => 2
+        ];
+        $hashedPassword = password_hash($password, PASSWORD_ARGON2I, $options);
+        $data = [
+            "name" => $_POST['name'],
+            "email" => $_POST['email'],
+            "password" =>  $hashedPassword,
+        ];
 
-            redirect('admin/dang-nhap');
-        
+        User::creRegister("users", $data);
+
+        redirect('admin/dang-nhap');
+    }
+
+    public function logout()
+    {
+        // logout.php
+        session_start();
+
+        // Xóa tất cả các biến session
+        session_unset();
+
+        // Hủy phiên làm việc
+        session_destroy();
+
+        // Chuyển hướng người dùng về trang đăng nhập hoặc trang chủ
+        redirect('admin/dang-nhap');
+        exit();
     }
 }

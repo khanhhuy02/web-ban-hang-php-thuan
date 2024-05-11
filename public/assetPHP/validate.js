@@ -21,7 +21,7 @@ function Validator(options) {
     // console.log(options.form);
     var formElement = document.querySelector(options.form)
     // console.log(options.rules);
-
+    console.log(formElement);
     if (formElement) {
         //  khi nhấn submit from 
         formElement.onsubmit = function (e) {
