@@ -45,36 +45,32 @@ class LoginController extends Controller
     public function creRegister( $errors =null)
     {
 
-        $errors = array();
-        if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            if (empty(trim($_POST['name']))) {
-                $errors['fullname']['required'] = "Họ và tên không được để trống";
-            } else {
-                if (strlen(($_POST['name'])) <= 5) {
-                    $errors['fullname']['required'] = "Họ và tên không dưới 5 ký tự ";
-                }
-            }
-            if (empty(trim($_POST['email']))) {
-                $errors['email']['required'] = "email không được để trống";
-            } else {
-                if (!filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL)) {
-                    $errors['email']['invaild'] = "Email không hợp lệ ";
-                }
-            }
+        // $errors = array();
+        // if ($_SERVER['REQUEST_METHOD'] === "POST") {
+        //     if (empty(trim($_POST['name']))) {
+        //         $errors['fullname']['required'] = "Họ và tên không được để trống";
+        //     } else {
+        //         if (strlen(($_POST['name'])) <= 5) {
+        //             $errors['fullname']['required'] = "Họ và tên không dưới 5 ký tự ";
+        //         }
+        //     }
+        //     if (empty(trim($_POST['email']))) {
+        //         $errors['email']['required'] = "email không được để trống";
+        //     } else {
+        //         if (!filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL)) {
+        //             $errors['email']['invaild'] = "Email không hợp lệ ";
+        //         }
+        //     }
 
-            if (empty(trim($_POST['password']))) {
-                $errors['password']['required'] = "không được để trống";
-            } else {
-                if (strlen(($_POST['password'])) <= 5) {
-                    $errors['password']['invaild'] = "mật khẩu quá ngắn ";
-                }
-            }
-            if (empty($errors)) {
-                echo "thành công";
-            } else {
-                echo "không thành công";
-            }
-        } 
+        //     if (empty(trim($_POST['password']))) {
+        //         $errors['password']['required'] = "không được để trống";
+        //     } else {
+        //         if (strlen(($_POST['password'])) <= 5) {
+        //             $errors['password']['invaild'] = "mật khẩu quá ngắn ";
+        //         }
+        //     }
+           
+        // } 
      
             $password = $_POST['password'];
             $options = [
@@ -91,7 +87,7 @@ class LoginController extends Controller
 
             User::creRegister("users", $data);
 
-            // redirect('admin/dang-nhap');
+            redirect('admin/dang-nhap');
         
     }
 }

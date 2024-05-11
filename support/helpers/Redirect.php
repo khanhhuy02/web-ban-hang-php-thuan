@@ -10,7 +10,7 @@
     // }
 
  function redirect($path) {
-         header("Location: /mvc/$path");
+         header("location: /mvc/$path");
     }
 
 // }

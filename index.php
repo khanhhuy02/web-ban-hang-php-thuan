@@ -1,7 +1,9 @@
 
 <?php
 session_start();
+
 use Support\src\Route;
+
 include_once  __DIR__ . "/routes/autoload.php";
 include_once  __DIR__ . "/config/Constant.php";
 include_once  __DIR__ . "/support/helpers/Redirect.php";
@@ -62,194 +64,197 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 $action = Route::$routes[$method][$route];
 // $action mảng =   [0] => App\Http\Controllers\TestController Object , [1] => index
-
-if ($action){
-if (count($arr) >= 2) {
-    parse_str($arr[1], $query);
-    $params = array_merge($_GET, $query);
-} else {
-    $params = $_GET;
+if (!$action) {
+    redirect('trang-khong-ton-tai');
+    exit;
 }
+if ($action) {
+    if (count($arr) >= 2) {
+        parse_str($arr[1], $query);
+        $params = array_merge($_GET, $query);
+    } else {
+        $params = $_GET;
+    }
 
 
-$matchedRoute = null; // 52
-$tempParams = []; // Biến tạm thời để lưu trữ giá trị tham số
-// echo "<pre>";
-// print_r($);
-// echo "<pre>";
+    $matchedRoute = null; // 52
+    $tempParams = []; // Biến tạm thời để lưu trữ giá trị tham số
+    // echo "<pre>";
+    // print_r($);
+    // echo "<pre>";
 
 
-// Xử lý route với tham số
-foreach (Route::$routes[$method] as $key => $value) {
-    // Route lấy mảng = 
+    // Xử lý route với tham số
+    foreach (Route::$routes[$method] as $key => $value) {
+        // Route lấy mảng = 
 
-    //   Array
-    //  (
-    //      [tests] => Array
-    //          (
-    //              [0] => App\Http\Controllers\TestController Object, 
-    //              [1] => index
-    //           )
-    //      [delete/pro/{id}] => Array
-    //          (
-    //              [0] => App\Http\Controllers\TestController Object,
-    //              [1] => deletetest
-    //           )
-    //  )
+        //   Array
+        //  (
+        //      [tests] => Array
+        //          (
+        //              [0] => App\Http\Controllers\TestController Object, 
+        //              [1] => index
+        //           )
+        //      [delete/pro/{id}] => Array
+        //          (
+        //              [0] => App\Http\Controllers\TestController Object,
+        //              [1] => deletetest
+        //           )
+        //  )
 
 
-    // Chuyển đổi cú pháp route thành biểu thức chính quy
-    $pattern = str_replace('/', '\/', $key);
-    // b1: pattern = testsdelete\/pro\/{id}
-    $pattern = preg_replace('/\{[^\}]+\}/', '([^\/]+)', $pattern);
-    // b2: pattern = testsdelete\/pro\/([^\/]+)
-    $pattern = '/^' . $pattern . '$/';
-    // b3: pattern = /^tests$//^delete\/pro\/([^\/]+)$/ => $ có nghĩa lấy cái cuối cùng 52
-    if (preg_match($pattern, $route, $matches) && count($matches) > 0) {
-        // b1: pattern = /^tests$//^delete\/pro\/([^\/]+)$/
-        // b2 : route = delete/pro/52
-        // preg_match = 1; // 1 là true =  0 là false
-        $matchedRoute = $key;
-        // print_r($matches);// Array ( [0] => delete/pro/83 [1] => 52 )
-        // matchedRoute =  delete/pro/{id}
-        array_shift($matches); // Remove the first item (full match)
-        // array_shift($matches) = 52
+        // Chuyển đổi cú pháp route thành biểu thức chính quy
+        $pattern = str_replace('/', '\/', $key);
+        // b1: pattern = testsdelete\/pro\/{id}
+        $pattern = preg_replace('/\{[^\}]+\}/', '([^\/]+)', $pattern);
+        // b2: pattern = testsdelete\/pro\/([^\/]+)
+        $pattern = '/^' . $pattern . '$/';
+        // b3: pattern = /^tests$//^delete\/pro\/([^\/]+)$/ => $ có nghĩa lấy cái cuối cùng 52
+        if (preg_match($pattern, $route, $matches) && count($matches) > 0) {
+            // b1: pattern = /^tests$//^delete\/pro\/([^\/]+)$/
+            // b2 : route = delete/pro/52
+            // preg_match = 1; // 1 là true =  0 là false
+            $matchedRoute = $key;
+            // print_r($matches);// Array ( [0] => delete/pro/83 [1] => 52 )
+            // matchedRoute =  delete/pro/{id}
+            array_shift($matches); // Remove the first item (full match)
+            // array_shift($matches) = 52
 
-        $paramKeys = [];
+            $paramKeys = [];
 
-        $x = preg_match_all('/\{([^\}]+)\}/', $key, $paramKeys);
-        // preg_match_all tìm chuỗi 
-        // /\{([^\}]+)\}/' => {}
-        // key = delete/pro/{id}
-        // $paramKeys mảng : 
-        //         Array
+            $x = preg_match_all('/\{([^\}]+)\}/', $key, $paramKeys);
+            // preg_match_all tìm chuỗi 
+            // /\{([^\}]+)\}/' => {}
+            // key = delete/pro/{id}
+            // $paramKeys mảng : 
+            //         Array
+            // (
+            //     [0] => Array
+            //         (
+            //             [0] => {id}
+            //         )
+
+            //     [1] => Array
+            //         (
+            //             [0] => id
+            //         )
+
+            // )
+
+            $paramKeys = $paramKeys[1];
+
+            foreach ($paramKeys as $index => $paramKey) {
+                $paramValue = isset($matches[$index]) ? urldecode($matches[$index]) : null;
+                $tempParams[$paramKey] = $paramValue;
+                // Array
+                // (
+                //     [id] => 57
+                // )
+            }
+            break;
+        }
+    }
+    $params = [];
+
+    $params = array_merge($tempParams, $params);
+    // GỘP 2 MẢNG THÀNH 1 array_merge = 
+    // Array
+    // (
+    //     [id] => 57
+    // )
+
+    $action = Route::$routes[$method][$matchedRoute];
+    //  $action là một mảng có hai phần tử
+    // matchedRoute = delete/pro/{id}
+    // Route =Array
+    // (
+    //     [tests] => Array
+    //         (
+    //             [0] => App\Http\Controllers\TestController Object
+    //                 (
+    //                 )
+
+    //             [1] => index
+    //         )
+
+    //     [delete/pro/{id}] => Array
+    //         (
+    //             [0] => App\Http\Controllers\TestController Object
+    //                 (
+    //                 )
+
+    //             [1] => deletetest
+    //         )
+
+    // )
+    // $action: 
+    // Array
+    // (
+    //     [0] => App\Http\Controllers\TestController Object
+    //         (
+    //         )
+
+    //     [1] => deletetest
+    // )
+    $controllerName = $action[0];
+    //  [0] => App\Http\Controllers\TestController Object
+    $methodName = $action[1];
+    // [1] => deletetest
+    $controller = new $controllerName();
+    // chúng ta tạo một đối tượng mới của controller bằng cách sử dụng tên controller đã lấy từ biến $controllerName.
+    if (method_exists($controller, $methodName)) {
+        $reflectionMethod = new ReflectionMethod($controller, $methodName);
+        //     ReflectionMethod Object
         // (
-        //     [0] => Array
-        //         (
-        //             [0] => {id}
-        //         )
+        //     [name] => deletetest
+        //     [class] => App\Http\Controllers\TestController
+        // )
+        $parameters = $reflectionMethod->getParameters();
 
-        //     [1] => Array
+        // Array
+        // (
+        //     [0] => ReflectionParameter Object
         //         (
-        //             [0] => id
+        //             [name] => id
         //         )
 
         // )
 
-        $paramKeys = $paramKeys[1];
+        $arguments = [];
+        foreach ($parameters as $parameter) {
+            $parameterName = $parameter->getName();
+            //  $parameterName = id
+            if (array_key_exists($parameterName, $params)) {
+                $arguments[] = $params[$parameterName];
+                // $params[$parameterName] = 57 
+                // $arguments[] 
+                // Array
+                // (
+                //     [0] => 57
+                // )
 
-        foreach ($paramKeys as $index => $paramKey) {
-            $paramValue = isset($matches[$index]) ? urldecode($matches[$index]) : null;
-            $tempParams[$paramKey] = $paramValue;
-            // Array
-            // (
-            //     [id] => 57
-            // )
+            } else {
+                // Xử lý khi thiếu giá trị tham số hoặc đặt giá trị mặc định
+                // Trong ví dụ này, chúng ta đặt giá trị mặc định là null
+                $arguments[] = null;
+            }
         }
-        break;
-    }
-}
-$params = [];
 
-$params = array_merge($tempParams, $params);
-// GỘP 2 MẢNG THÀNH 1 array_merge = 
-// Array
-// (
-//     [id] => 57
-// )
+        // Gọi phương thức trong controller với các đối số tương ứng
+        call_user_func_array([$controller, $methodName], $arguments);
+        // $controller = App\Http\Controllers\TestController Object
+        // $methodName deletetest
+        // $arguments / nhận mảng array
+    } else {
 
-$action = Route::$routes[$method][$matchedRoute];
-//  $action là một mảng có hai phần tử
-// matchedRoute = delete/pro/{id}
-// Route =Array
-// (
-//     [tests] => Array
-//         (
-//             [0] => App\Http\Controllers\TestController Object
-//                 (
-//                 )
-
-//             [1] => index
-//         )
-
-//     [delete/pro/{id}] => Array
-//         (
-//             [0] => App\Http\Controllers\TestController Object
-//                 (
-//                 )
-
-//             [1] => deletetest
-//         )
-
-// )
-// $action: 
-// Array
-// (
-//     [0] => App\Http\Controllers\TestController Object
-//         (
-//         )
-
-//     [1] => deletetest
-// )
-$controllerName = $action[0];
-//  [0] => App\Http\Controllers\TestController Object
-$methodName = $action[1];
-// [1] => deletetest
-$controller = new $controllerName();
-// chúng ta tạo một đối tượng mới của controller bằng cách sử dụng tên controller đã lấy từ biến $controllerName.
-if (method_exists($controller, $methodName)) {
-    $reflectionMethod = new ReflectionMethod($controller, $methodName);
-    //     ReflectionMethod Object
-    // (
-    //     [name] => deletetest
-    //     [class] => App\Http\Controllers\TestController
-    // )
-    $parameters = $reflectionMethod->getParameters();
-
-    // Array
-    // (
-    //     [0] => ReflectionParameter Object
-    //         (
-    //             [name] => id
-    //         )
-
-    // )
-
-    $arguments = [];
-    foreach ($parameters as $parameter) {
-        $parameterName = $parameter->getName();
-        //  $parameterName = id
-        if (array_key_exists($parameterName, $params)) {
-            $arguments[] = $params[$parameterName];
-            // $params[$parameterName] = 57 
-            // $arguments[] 
-            // Array
-            // (
-            //     [0] => 57
-            // )
-
-        } else {
-            // Xử lý khi thiếu giá trị tham số hoặc đặt giá trị mặc định
-            // Trong ví dụ này, chúng ta đặt giá trị mặc định là null
-            $arguments[] = null;
-        }
+        // Xử lý khi không tìm thấy phương thức trong controller
+        die("404 Not Found");
     }
 
-    // Gọi phương thức trong controller với các đối số tương ứng
-    call_user_func_array([$controller, $methodName], $arguments);
-    // $controller = App\Http\Controllers\TestController Object
-    // $methodName deletetest
-    // $arguments / nhận mảng array
+    // if ($action !== null) {
+    //     call_user_func_array($action, $params);
+    // } else {
+    //     // Xử lý khi không tìm thấy route
+    // }
 } else {
-    // Xử lý khi không tìm thấy phương thức trong controller
-    die("404 Not Found");
-}
-
-// if ($action !== null) {
-//     call_user_func_array($action, $params);
-// } else {
-//     // Xử lý khi không tìm thấy route
-// }
-} else{
-   
 }
