@@ -34,7 +34,7 @@ class User extends database
         }
     }
 
-    
+
     public static function loginAdmin($email, $password)
     {
         self::$email = $email;
@@ -59,7 +59,11 @@ class User extends database
     public static function creRegister($tablet, $data)
     {
 
-
+        //  $data[
+        // 'name' => "abc",
+        // 'email' => "abc@gmail.com"
+        // 'password' => "asc123213123"
+        // ]
 
         $key = implode(", ", array_keys($data)); // key (name , email, password)
         // echo "<br>";

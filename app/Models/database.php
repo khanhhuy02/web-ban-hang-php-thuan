@@ -39,7 +39,7 @@ class database
         }
     }
     // Hàm thực hiện truy vấn 1 hàng 
-    public static function queryOne($sql, $params = [])
+    public static function queryOne($sql,$params)
     {
         self::connect();
         try {

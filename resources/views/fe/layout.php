@@ -43,6 +43,10 @@ switch ($titleTag) {
         include_once $ViewPast;
         include_once __DIR__ . "/inc/footer.php";
         break;
+    default :
+    redirect('trang-khong-ton-tai');
+    break;
+
 }
 
 ?>

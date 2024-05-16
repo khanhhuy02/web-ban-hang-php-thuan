@@ -17,5 +17,9 @@ class authCheckuser
         return ($_SESSION['role'] == 1); // Kiểm tra giá trị của biến $_SESSION['role'], 1 đại diện cho quyền quản trị viên
     }
 
+    function isUser()
+    {
+        return ($_SESSION['role'] == 0); // Kiểm tra giá trị của biến $_SESSION['role'], 1 đại diện cho quyền quản trị viên
+    }
 
 }

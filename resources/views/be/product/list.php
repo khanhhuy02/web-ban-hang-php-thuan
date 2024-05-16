@@ -12,21 +12,21 @@
                                 <div class="search_field">
                                     <input type="text" placeholder="Search here...">
                                 </div>
-                                <button type="submit"> <img src="<?=assetss?>assetsAdmin/img/icon/icon_search.svg" alt> </button>
+                                <button type="submit"> <img src="<?= assetss ?>assetsAdmin/img/icon/icon_search.svg" alt> </button>
                             </form>
                         </div>
                     </div>
                     <div class="header_right d-flex justify-content-between align-items-center">
                         <div class="header_notification_warp d-flex align-items-center">
                             <li>
-                                <a href="#"> <img src="<?=assetss?>assetsAdmin/img/icon/bell.svg" alt> </a>
+                                <a href="#"> <img src="<?= assetss ?>assetsAdmin/img/icon/bell.svg" alt> </a>
                             </li>
                             <li>
-                                <a href="#"> <img src="<?=assetss?>assetsAdmin/img/icon/msg.svg" alt> </a>
+                                <a href="#"> <img src="<?= assetss ?>assetsAdmin/img/icon/msg.svg" alt> </a>
                             </li>
                         </div>
                         <div class="profile_info">
-                            <img src="<?=assetss?>assetsAdmin/img/client_img.png" alt="#">
+                            <img src="<?= assetss ?>assetsAdmin/img/client_img.png" alt="#">
                             <div class="profile_info_iner">
                                 <p>Welcome Admin!</p>
                                 <h5>Taravor James</h5>
@@ -75,48 +75,43 @@
                                     <tr>
                                         <th scope="col">STT</th>
                                         <th scope="col">Tên Sản Phẩm</th>
+                                        <th scope="col">hình ảnh</th>
                                         <th scope="col">Loại Hàng</th>
-                                        <th scope="col">Đồng Giá</th>
-                                        <th scope="col">Giảm Giá</th>
+                                        <th scope="col">Đồng cũ</th>
                                         <th scope="col">Giá Mới</th>
-                                        <th scope="col">Ngày Đăng</th>
-                                        <th scope="col">Đã Bán</th>
+                                        <th scope="col">Ngày đăng</th>
 
+                                        <th scope="col">Đã Bán</th>
 
                                     </tr>
                                 </thead>
+
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Iphone 14</td>
-                                        <td>Điện thoại</td>
-                                        <td>10000000</td>
-                                        <td>10%</td>
-                                        <td>9000000</td>
-                                        <td>12/02/2023</td>
-                                        <td>22</td>
-                                        <td>
-                                            <a href="#" class="status_btn">sữa</a>
-                                            <a href="#" class="status_btn" style="background-color: red;">Xóa</a>
-                                            <a href="../thong-tin/addInformation.php" class="status_btn" style="background-color: blue;">update nội dung</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>asus</td>
-                                        <td>Máy Tính</td>
-                                        <td>10000000</td>
-                                        <td>10%</td>
-                                        <td>9000000</td>
-                                        <td>12/02/2023</td>
-                                        <td>22</td>
-                                        <td>
-                                            <a href="#" class="status_btn">sữa</a>
-                                            <a href="#" class="status_btn" style="background-color: red;">Xóa</a>
-                                            <a href="../thong-tin/addInformation.php" class="status_btn" style="background-color: blue;">update nội dung</a>
-                                        </td>
-                                    </tr>
+                                    <?php $stt = 0;
+                                     foreach ($list as $key => $item) { ?>
+                                        <tr>
+                                            <td><?=  $stt++?></td>
+                                            <td><?= $item['name'] ?></td>
+                                            <td><img src="<?= $item['image'] ?>" alt=""></td>
+
+                                            <td>
+                                                <?php
+                                                echo $item['names'];
+                                                ?>
+
+                                            </td>
+                                            <td><?= $item['price_new'] ?></td>
+                                            <td><?= $item['price_old'] ?></td>
+                                            <td><?= $item['meeting_day'] ?></td>
+                                            <td>22</td>
+                                            <td>
+                                                <a href="<?= ROOT_URL ?>admin/eidt/products/<?=$item['id'] ?>" class="status_btn">sữa</a>
+                                                <a href="<?= ROOT_URL ?>admin/list/products/<?=$item['id'] ?>" class="status_btn" style="background-color: red;">Xóa</a> <a href="../thong-tin/addInformation.php" class="status_btn" style="background-color: blue;">update nội dung</a>
+                                            </td>
+                                        </tr><?php } ?>
                                 </tbody>
+
+
                             </table>
                         </div>
                     </div>
