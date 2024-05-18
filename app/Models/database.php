@@ -31,7 +31,7 @@ class database
     {
         self::connect();
         try {
-            $stmt = self::$conn->query($sql);
+            $stmt = self::$conn->prepare($sql);
             $stmt->execute($param);
             return $stmt->fetchAll();
         } catch (Exception $e) {

@@ -18,13 +18,15 @@ if ($authCheck->isLoggedIn() && $authCheck->isAdmin()) {
     Route::get("admin", [new AdminHomeController, 'index']);
     Route::get("admin/list/product", [new productController, 'index']);
     Route::get("admin/create/product", [new productController, 'ShowCre']);
+    Route::get("admin/create/product/{id}", [new productController, 'ShowCreSub']);
     Route::post("admin/create/product", [new productController, 'create']);
+    
     Route::delete("admin/list/products/{id}", [new productController, 'deletePros']);
     Route::get("admin/eidt/products/{id}", [new productController, 'showEdi']);
     Route::put("admin/edit/product/{id}", [new productController, 'proEdi']);
 
 } else {
-    redirect("admin/dang-nhap");
+    // redirect("admin/dang-nhap");
 }
 
 

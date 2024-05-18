@@ -23,4 +23,12 @@ class Brand extends ModelsDatabase
         $brands = "SELECT * FROM  $Brand->table";
         return parent::query($brands);
     }
+
+    public static function filterBra($tablet, $id)
+    {
+        $sql = "SELECT * FROM $tablet WHERE categories_id = ?";
+        $param = [$id];
+        $result = parent::query($sql, $param);
+        return $result;
+    }
 }

@@ -15,6 +15,11 @@
 <script src="<?=assetss?>assetsAdmin/js/jquery1-3.4.1.min.js"></script>
 
 
+
+
+
+
+
 <script src="<?=assetss?>assetsAdmin/js/popper1.min.js"></script>
 
 <script src="<?=assetss?>assetsAdmin/js/bootstrap1.min.js"></script>
@@ -51,18 +56,18 @@
 <script src="<?=assetss?>assetsAdmin/vendors/tagsinput/tagsinput.js"></script>
 
 <script src="<?=assetss?>assetsAdmin/vendors/text_editor/summernote-bs4.js"></script>
-<script src="<?=assetss?>assetsAdmin/vendors/apex_chart/apexcharts.js"></script>
+<!-- <script src="<?=assetss?>assetsAdmin/vendors/apex_chart/apexcharts.js"></script> -->
 
 <script src="<?=assetss?>assetsAdmin/js/custom.js"></script>
 
-<script src="<?=assetss?>assetsAdmin/js/active_chart.js"></script>
+<!-- <script src="<?=assetss?>assetsAdmin/js/active_chart.js"></script> -->
 
 <script src="<?=assetss?>assetsAdmin/vendors/apex_chart/radial_active.js"></script>
 <script src="<?=assetss?>assetsAdmin/vendors/apex_chart/stackbar.js"></script>
-<script src="<?=assetss?>assetsAdmin/vendors/apex_chart/area_chart.js"></script>
+<!-- <script src="<?=assetss?>assetsAdmin/vendors/apex_chart/area_chart.js"></script> -->
 
 <script src="<?=assetss?>assetsAdmin/vendors/apex_chart/bar_active_1.js"></script>
-<script src="<?=assetss?>assetsAdmin/vendors/chartjs/chartjs_active.js"></script>
+<!-- <script src="<?=assetss?>assetsAdmin/vendors/chartjs/chartjs_active.js"></script> -->
 
 </body>
 

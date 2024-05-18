@@ -1,5 +1,5 @@
 <?php
-// ini_set('display_errors', 'Off');
+ini_set('display_errors', 'Off');
 session_start();
 // $_SESSION['logged_in'] = true;
 use Support\src\Route;
@@ -71,3 +71,6 @@ if ($routeMatched) {
 // else {
 //     redirect("trang-khong-ton-tai");
 // }
+?>
+
+

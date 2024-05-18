@@ -93,7 +93,7 @@
                 </div>
                 <div class="tab-content" id="myTabContent">
 
-                    <form action="<?= ROOT_URL ?>admin/create/product" method="post" enctype="multipart/form-data" class="tab-pane fade row" id="iphone" role="tabpanel" aria-labelledby="iphone-tab">
+                    <form action="<?= ROOT_URL ?>admin/create/product" method="post" enctype="multipart/form-data" class="tab-pane fade row active" id="iphone" role="tabpanel" aria-labelledby="iphone-tab">
                         <!-- ĐIỆN THOẠI START -->
                         <div class="row ">
                             <div class="col-12">
@@ -144,20 +144,18 @@
                                                     <div class="row">
                                                         <div class="col-4">
                                                             <label for="">Loại</label>
-                                                            <select name="categories_id" class="form-select form-select-sm" aria-label="Small select example">
-
+                                                            <select name="categories_id" class="form-select form-select-sm main-categories-id" aria-label="Small select example">
                                                                 <?php foreach ($listCat as $item) : ?>
-                                                                    <option value="<?= $item['id'] ?>"><?= $item['names'] ?></option>
+                                                                    <option value="<?= $item['id'] ?>" data-url="<?= ROOT_URL ?>/admin/create/product/<?= $item['id'] ?>">
+                                                                        <?= $item['names'] ?>
+                                                                    </option>
                                                                 <?php endforeach ?>
-
                                                             </select>
                                                         </div>
                                                         <div class="col-4">
-                                                            <label for="">Hãng</label>
-                                                            <select name="brands_id" class="form-select form-select-sm" aria-label="Small select example">
-                                                                <?php foreach ($listBar as $item) : ?>
-                                                                    <option value="<?= $item['id'] ?>"><?= $item['names'] ?></option>
-                                                                <?php endforeach ?>
+                                                            <label for="" class="">Hãng</label>
+                                                            <span class="text"></span>
+                                                            <select name="brands_id" id="subcategory" class="form-select form-select-sm subcategory" aria-label="Small select example">
                                                             </select>
                                                         </div>
                                                     </div>
@@ -298,8 +296,7 @@
 
                     <!-- LAPTOP START -->
 
-                    <form action="" method="POST" enctype="multipart/form-data" class="tab-pane fade row" id="Laptop" role="tabpanel" aria-labelledby="Laptop-tab">
-                        @csrf
+                    <form action="<?= ROOT_URL ?>admin/create/product" method="post" enctype="multipart/form-data" class="tab-pane fade row" id="Laptop" role="tabpanel" aria-labelledby="Laptop-tab">
                         <div class="row ">
                             <div class="col-12">
                                 <div class="white_card position-relative mb_20">
@@ -341,25 +338,23 @@
                                                     <div class="row">
                                                         <div class="col-4">
                                                             <label for="">Loại</label>
-                                                            <select name="categories_id" class="form-select form-select-sm" aria-label="Small select example">
-
-                                                                @foreach ($category_products as $item)
-                                                                <option value="{{$item->id}}">{{$item->names}}</option>
-                                                                @endforeach
-
+                                                            <select name="categories_id" class="form-select form-select-sm main-categories-id" aria-label="Small select example">
+                                                                <?php foreach ($listCat as $item) : ?>
+                                                                    <option value="<?= $item['id'] ?>" data-url="<?= ROOT_URL ?>/admin/create/product/<?= $item['id'] ?>">
+                                                                        <?= $item['names'] ?>
+                                                                    </option>
+                                                                <?php endforeach ?>
                                                             </select>
                                                         </div>
                                                         <div class="col-4">
-                                                            <label for="">Hãng</label>
-                                                            <select name="brands_id" class="form-select form-select-sm" aria-label="Small select example">
-
-                                                                @foreach ($category_brand as $item)
-                                                                <option value="{{$item->id}}">{{$item->names}}</option>
-                                                                @endforeach
-
+                                                            <label for="" class="">Hãng</label>
+                                                            <span class="text"></span>
+                                                            <select name="brands_id" id="subcategory" class="form-select form-select-sm subcategory" aria-label="Small select example">
                                                             </select>
                                                         </div>
                                                     </div>
+
+
 
                                                     <div class=" mt-3">
                                                         <label for="">Số lượng trong kho </label>
@@ -466,3 +461,125 @@
             </div>
 
         </div>
+        <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- 
+        <script>
+            $(document).ready(function() {
+                $('body').on('change', '.main-categories-id', function(e) {
+                    let id = $(this).val();
+                    let url = <?= ROOT_URL ?> +
+                        '/admin/create/product/' + id;
+                    let targetSelect = $('#subcategory');
+                    let text = $('.text');
+
+                    console.log(targetSelect);
+                    alert(id);
+
+                    $.ajax({
+                        method: "GET",
+                        url: url,
+                        dataType: "json",
+                        data: {
+                            id: id
+                        },
+                        success: function(listBar) {
+                            console.log(listBar);
+
+                            $.each(listBar, function(index, item) {
+                                var option = $('<option>').val(item.id).text(item.names);
+                                selectElement.append(option);
+                            });
+                            // text.html(listBar);
+                            // // console.log(listBar);
+                            // alert(listBar);
+                            // // $('#subcategory').empty()
+
+                            // for (let i = 0; i < listBar.length; i++) {
+                            //     targetSelect.append(`<option>${listBar}</option>`);
+
+                            // }
+                            // // var obj = JSON.parse(listBar);
+                            // $.each(listBar, (key, val) =>{
+                            //     console.log(key);
+                            //     console.log(val); //depending on your data, you might call val.url or whatever you may have
+                            //     targetSelect.append(`<option>${val}</option>`);
+                            // });
+
+                            // $.each(listBar, function(xs) {
+                            //     $('#subcategory').append($("<option>", {
+                            //         text: xs
+                            //     }));
+                            // });
+
+
+                            // targetSelect.html('<option value="">Select</option>')
+                            // $.each(data, function(i, item) {
+                            //     targetSelect.append(`<option value="${item.id}">${item.name}</option>`);
+                            // })
+
+                            // var options = '';
+                            // for (var i = 0; i < listBar.length; i++) {
+                            //     var item = listBar[i];
+                            //     options += '<option value="' + item.id + '">' + item.names + '</option>';
+                            // }
+
+                            // // Gắn danh sách tùy chọn vào phần tử <select>
+                            // selectElement.html(options);
+
+
+
+
+                        },
+                        error: function(xhr, status, error) {
+                            let errorMessage = `Error fetching sub-categories: ${error}`;
+                            if (xhr.status === 404) {
+                                errorMessage = 'Sub-category not found for the selected main category.';
+                            }
+                            // console.error(errorMessage);
+                            // Consider displaying an error message to the user
+                        }
+                    });
+                });
+
+                // $('body').on('change', '.sub-category', function(e) {
+                //     let selectedSubCategoryId = $(this).val();
+                //     // Implement logic to handle sub-category selection here
+                //     // For example, make another AJAX request to fetch product details or update UI elements
+                //     console.log('Sub-category selected:', selectedSubCategoryId);
+                // });
+            });
+        </script> -->
+
+        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+
+        <script>
+            $(document).ready(function() {
+                $('.main-categories-id').change(function() {
+                    var selectedOption = $(this).find('option:selected');
+                    var url = selectedOption.data('url');
+
+                    if (url) {
+                        $.ajax({
+                            url: url,
+                            method: 'GET',
+                            dataType: 'json',
+                            success: function(listBar) {
+                                var selectElement = $('#subcategory');
+                                selectElement.empty();
+                                console.log(listBar);
+
+                                $.each(listBar, function(index, item) {
+                                    var option = $('<option>').val(item.id).text(item.names);
+                                    selectElement.append(option);
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error(error);
+                            }
+                        });
+                    }
+                });
+            });
+        </script>

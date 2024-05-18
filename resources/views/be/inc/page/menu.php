@@ -123,8 +123,8 @@
                 </li>
                 <li><a href="#">Sản phẩm</a>
                     <ul>
-                        <li><a href="../san-pham/addProduct.php">Thêm sản phẩm</a></li>
-                        <li><a href="../san-pham/listProduct.php">Danh Sách Sản Phẩm</a></li>
+                        <li><a href="<?=ROOT_URL?>admin/list/product">Thêm sản phẩm</a></li>
+                        <li><a href="<?=ROOT_URL?>admin/create/product">Danh Sách Sản Phẩm</a></li>
                         <!-- <li><a href="datepicker.html">Date Picker</a></li> -->
                     </ul>
                 </li>

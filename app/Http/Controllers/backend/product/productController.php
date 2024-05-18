@@ -28,12 +28,27 @@ class productController extends Controller
         $titleTag = "Danh sách sản phẩm";
 
         $listCat = Category::Category();
-        $listBar = Brand::Brand();
+        // $listBar = Brand::Brand();
+        // $listCat = Category::filterCate('categories', 1);
+        // $listBar = Brand::filterBra('brands',$id );
+
         return $this->view("be.product.create", [
             'titleTag' => $titleTag,
             'listCat' => $listCat,
-            'listBar' => $listBar,
+            // 'listBar' => $listBar,
         ]);
+    }
+
+
+    public function ShowCreSub($id)
+    {
+        $titleTag = "Danh sách sản phẩm";
+
+        $listBar = Brand::filterBra('brands', $id);
+        $listCat = Category::Category();
+
+        header('Content-Type: application/json');
+        echo json_encode($listBar);
     }
 
     public function create()
@@ -112,6 +127,8 @@ class productController extends Controller
             'chip' => $_POST['chip'],
             'description' => $_POST['description'],
         ];
+
+
         if ($hasError) {
             $listCat = Category::Category();
             $listBar = Brand::Brand();
@@ -152,12 +169,12 @@ class productController extends Controller
         $hasError = false;
         $existingProduct = Product::showID('products', $id);
         $destination = $existingProduct['image'] ?? '';
-    
+
         $target_dir = "public/uploads/product/";
         $nameFileImage = $_FILES['image']['name'];
         $random_number = uniqid();
         $extension = pathinfo($nameFileImage, PATHINFO_EXTENSION);
-    
+
         if (!empty($nameFileImage)) {
             if (!($extension == "jpg" || $extension == "jpeg" || $extension == "png")) {
                 $errors = "không đúng định dạng ảnh";
@@ -168,25 +185,25 @@ class productController extends Controller
                 move_uploaded_file($_FILES['image']['tmp_name'], $destination);
             }
         }
-    
+
         $sub_fileNames = explode(',', $existingProduct['sub_image'] ?? '');
-    
+
         if (!empty($_FILES['sub_image']['name'][0])) {
             foreach ($_FILES['sub_image']['name'] as $index => $item_sub_image) {
                 $extension_sub_image = pathinfo($item_sub_image, PATHINFO_EXTENSION);
                 $random_numbers = uniqid();
                 $new_fileName_sub_image = $random_numbers . '-product.' . $extension_sub_image;
-    
+
                 $sub_fileName = $target_dir . $new_fileName_sub_image;
-    
+
                 $tmp_name = $_FILES['sub_image']['tmp_name'][$index];
                 move_uploaded_file($tmp_name, $sub_fileName);
                 $sub_fileNames[] = $sub_fileName;
             }
         }
-    
+
         $sub_image = implode(',', $sub_fileNames);
-    
+
         $data = [
             'brands_id' => $_POST['brands_id'],
             'categories_id' => $_POST['categories_id'],
@@ -211,7 +228,7 @@ class productController extends Controller
             'chip' => $_POST['chip'],
             'description' => $_POST['description'],
         ];
-    
+
         if ($hasError) {
             $listCat = Category::Category();
             $listBar = Brand::Brand();
