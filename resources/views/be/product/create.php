@@ -61,7 +61,7 @@
                                 </ol>
                             </div>
                             <!-- nut chọn đăng sản phẩm start-->
-                            <div class="white_card_header">
+                            <!-- <div class="white_card_header">
                                 <div class="bulder_tab_wrapper">
                                     <ul class="nav" id="myTab" role="tablist">
                                         <li class="nav-item">
@@ -76,15 +76,10 @@
                                         <li class="nav-item">
                                             <a class="nav-link" id="Laptop-tab" data-bs-toggle="tab" href="#Laptop" role="tab" aria-controls="Laptop" aria-selected="false">Laptop</a>
                                         </li>
-                                        <!-- <li class="nav-item">
-                                    <a class="nav-link" id="aside-tab" data-bs-toggle="tab" href="#aside" role="tab" aria-controls="aside" aria-selected="false">aside</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="footer_tb-tab" data-bs-toggle="tab" href="#footer_tb" role="tab" aria-controls="aside" aria-selected="true">footer</a>
-                                </li> -->
+                            
                                     </ul>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- nut chọn đăng sản phẩm end -->
 
 
@@ -93,7 +88,7 @@
                 </div>
                 <div class="tab-content" id="myTabContent">
 
-                    <form action="<?= ROOT_URL ?>admin/create/product" method="post" enctype="multipart/form-data" class="tab-pane fade row active" id="iphone" role="tabpanel" aria-labelledby="iphone-tab">
+                    <form action="<?= ROOT_URL ?>admin/create/product" method="post" enctype="multipart/form-data">
                         <!-- ĐIỆN THOẠI START -->
                         <div class="row ">
                             <div class="col-12">
@@ -146,7 +141,7 @@
                                                             <label for="">Loại</label>
                                                             <select name="categories_id" class="form-select form-select-sm main-categories-id" aria-label="Small select example">
                                                                 <?php foreach ($listCat as $item) : ?>
-                                                                    <option value="<?= $item['id'] ?>" data-url="<?= ROOT_URL ?>/admin/create/product/<?= $item['id'] ?>">
+                                                                    <option value="<?= $item['id'] ?>" data-url="<?= ROOT_URL ?>admin/create/product/<?= $item['id'] ?>/<?= $item['alias']?>">
                                                                         <?= $item['names'] ?>
                                                                     </option>
                                                                 <?php endforeach ?>
@@ -160,20 +155,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <!-- <h6 class="text-muted font_s_13 mt-2 mb-1">Features :</h6>
-                                    <ul class="list-unstyled pro-features border-0">
-                                        <li>It is a long established fact that a reader will be distracted.</li>
-                                        <li>Contrary to popular belief, Lorem Ipsum is not text.</li>
-                                    </ul> -->
-                                                    <!-- <h6 class="text-muted font_s_13 d-inline-block align-middle me-2">Biến thể </h6>
-                                    <div class="radio2 radio-info2 form-check-inline ms-2">
-                                        <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
-                                        <label class="form-label" for="inlineRadio1"></label>
-                                    </div>
-                                    <div class="radio2 radio-dark2 form-check-inline">
-                                        <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
-                                        <label class="form-label" for="inlineRadio2"></label>
-                                    </div> -->
                                                     <div class=" mt-3 col-10 ">
                                                         <label for="">Số lượng trong kho </label>
 
@@ -196,68 +177,126 @@
                                                             </th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">Màng Hình</th>
-                                                            <td colspan='3'><input type="text" name="screen" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Hệ điều hành</th>
-                                                            <td colspan='3'><input type="text" name="operating_system" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Camera Trước</th>
-                                                            <td colspan='3'><input type="text" name="camera_before" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Camera sau</th>
-                                                            <td colspan='3'><input type="text" name="camera_after" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Vi xử lý (chip)</th>
-                                                            <td colspan='3'><input type="text" name="chip" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        <tr>
-                                                            <th scope="row">Ram</th>
-                                                            <td colspan='3'><input type="text" name="ram" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
 
-                                                            <th scope="row">bộ lưu trữ</th>
-                                                            <td colspan='3'><input type="text" name="capacity" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Sim</th>
-                                                            <td colspan='3'><input type="text" name="sim" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Dung lượng pin</th>
-                                                            <td colspan='3'><input type="text" name="pin" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">ngày ra mắt sản phẩm</th>
-                                                            <td colspan='3'><input type="date" name="meeting_day" class="col-12 p-1"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                        </tr>
-                                                    </tbody>
+                                              
+                                                
+                                         
+                                                        <tbody id="phone-fields" style="display:none;">
+                                                            <tr>
+                                                                <th scope="row">Màng Hình</th>
+                                                                <td colspan='3'><input type="text" name="screen" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Hệ điều hành</th>
+                                                                <td colspan='3'><input type="text" name="operating_system" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Camera Trước</th>
+                                                                <td colspan='3'><input type="text" name="camera_before" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Camera sau</th>
+                                                                <td colspan='3'><input type="text" name="camera_after" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Vi xử lý (chip)</th>
+                                                                <td colspan='3'><input type="text" name="chip" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            <tr>
+                                                                <th scope="row">Ram</th>
+                                                                <td colspan='3'><input type="text" name="ram" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+
+                                                                <th scope="row">bộ lưu trữ</th>
+                                                                <td colspan='3'><input type="text" name="capacity" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Sim</th>
+                                                                <td colspan='3'><input type="text" name="sim" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Dung lượng pin</th>
+                                                                <td colspan='3'><input type="text" name="pin" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">ngày ra mắt sản phẩm</th>
+                                                                <td colspan='3'><input type="date" name="meeting_day" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                            
+                                                        <tbody id="laptop-fields" style="display:none;">
+                                                            <tr>
+                                                                <th scope="row">Màng Hình</th>
+                                                                <td colspan='3'><input type="text" name="screen" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Hệ điều hành</th>
+                                                                <td colspan='3'><input type="text" name="operating_system" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Camera Trước</th>
+                                                                <td colspan='3'><input type="text" name="camera_before" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th scope="row">Vi xử lý (CPU)</th>
+                                                                <td colspan='3'><input type="text" name="chip" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            <tr>
+                                                                <th scope="row">Ram</th>
+                                                                <td colspan='3'><input type="text" name="ram" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+
+                                                                <th scope="row">bộ lưu trữ(ổ cứng)</th>
+                                                                <td colspan='3'><input type="text" name="capacity" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Dung lượng pin</th>
+                                                                <td colspan='3'><input type="text" name="pin" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">ngày ra mắt sản phẩm</th>
+                                                                <td colspan='3'><input type="date" name="meeting_day" class="col-12 p-1"></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                
+
                                                 </table>
                                             </div>
 
@@ -283,12 +322,12 @@
                             </div>
                         </div>
                         <!-- ĐIỆN THOẠI END -->
+                    </form>
 
 
 
 
                         <!-- MÁY TÍNH BÀN END -->
-                    </form>
 
 
 
@@ -461,125 +500,3 @@
             </div>
 
         </div>
-        <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <!-- 
-        <script>
-            $(document).ready(function() {
-                $('body').on('change', '.main-categories-id', function(e) {
-                    let id = $(this).val();
-                    let url = <?= ROOT_URL ?> +
-                        '/admin/create/product/' + id;
-                    let targetSelect = $('#subcategory');
-                    let text = $('.text');
-
-                    console.log(targetSelect);
-                    alert(id);
-
-                    $.ajax({
-                        method: "GET",
-                        url: url,
-                        dataType: "json",
-                        data: {
-                            id: id
-                        },
-                        success: function(listBar) {
-                            console.log(listBar);
-
-                            $.each(listBar, function(index, item) {
-                                var option = $('<option>').val(item.id).text(item.names);
-                                selectElement.append(option);
-                            });
-                            // text.html(listBar);
-                            // // console.log(listBar);
-                            // alert(listBar);
-                            // // $('#subcategory').empty()
-
-                            // for (let i = 0; i < listBar.length; i++) {
-                            //     targetSelect.append(`<option>${listBar}</option>`);
-
-                            // }
-                            // // var obj = JSON.parse(listBar);
-                            // $.each(listBar, (key, val) =>{
-                            //     console.log(key);
-                            //     console.log(val); //depending on your data, you might call val.url or whatever you may have
-                            //     targetSelect.append(`<option>${val}</option>`);
-                            // });
-
-                            // $.each(listBar, function(xs) {
-                            //     $('#subcategory').append($("<option>", {
-                            //         text: xs
-                            //     }));
-                            // });
-
-
-                            // targetSelect.html('<option value="">Select</option>')
-                            // $.each(data, function(i, item) {
-                            //     targetSelect.append(`<option value="${item.id}">${item.name}</option>`);
-                            // })
-
-                            // var options = '';
-                            // for (var i = 0; i < listBar.length; i++) {
-                            //     var item = listBar[i];
-                            //     options += '<option value="' + item.id + '">' + item.names + '</option>';
-                            // }
-
-                            // // Gắn danh sách tùy chọn vào phần tử <select>
-                            // selectElement.html(options);
-
-
-
-
-                        },
-                        error: function(xhr, status, error) {
-                            let errorMessage = `Error fetching sub-categories: ${error}`;
-                            if (xhr.status === 404) {
-                                errorMessage = 'Sub-category not found for the selected main category.';
-                            }
-                            // console.error(errorMessage);
-                            // Consider displaying an error message to the user
-                        }
-                    });
-                });
-
-                // $('body').on('change', '.sub-category', function(e) {
-                //     let selectedSubCategoryId = $(this).val();
-                //     // Implement logic to handle sub-category selection here
-                //     // For example, make another AJAX request to fetch product details or update UI elements
-                //     console.log('Sub-category selected:', selectedSubCategoryId);
-                // });
-            });
-        </script> -->
-
-        <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-
-
-        <script>
-            $(document).ready(function() {
-                $('.main-categories-id').change(function() {
-                    var selectedOption = $(this).find('option:selected');
-                    var url = selectedOption.data('url');
-
-                    if (url) {
-                        $.ajax({
-                            url: url,
-                            method: 'GET',
-                            dataType: 'json',
-                            success: function(listBar) {
-                                var selectElement = $('#subcategory');
-                                selectElement.empty();
-                                console.log(listBar);
-
-                                $.each(listBar, function(index, item) {
-                                    var option = $('<option>').val(item.id).text(item.names);
-                                    selectElement.append(option);
-                                });
-                            },
-                            error: function(xhr, status, error) {
-                                console.error(error);
-                            }
-                        });
-                    }
-                });
-            });
-        </script>

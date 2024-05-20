@@ -18,6 +18,10 @@
 
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script src="<?=assetss?>assetPHP/ajax.js"></script>
 
 
 <script src="<?=assetss?>assetsAdmin/js/popper1.min.js"></script>

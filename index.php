@@ -68,9 +68,9 @@ if ($routeMatched) {
         call_user_func_array([$controller, $methodName], $arguments);
     }
 } 
-// else {
-//     redirect("trang-khong-ton-tai");
-// }
+else {
+    redirect("trang-khong-ton-tai");
+}
 ?>
 
 

@@ -25,8 +25,8 @@ class Category extends ModelsDatabase
         return parent::query($Category);
     }
 
-    public static function filterCate($tablet , $id){
-        $sql = "SELECT * FROM $tablet WHERE id = $id" ;
+    public static function filterCate($tablet , $id,$params){
+        $sql = "SELECT * FROM $tablet WHERE id = $id AND alias = $params" ;
         $result = parent::query($sql);
         return $result;
     }

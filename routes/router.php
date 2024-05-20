@@ -18,7 +18,7 @@ if ($authCheck->isLoggedIn() && $authCheck->isAdmin()) {
     Route::get("admin", [new AdminHomeController, 'index']);
     Route::get("admin/list/product", [new productController, 'index']);
     Route::get("admin/create/product", [new productController, 'ShowCre']);
-    Route::get("admin/create/product/{id}", [new productController, 'ShowCreSub']);
+    Route::get("admin/create/product/{id}/{param}", [new productController, 'ShowCreSub']);
     Route::post("admin/create/product", [new productController, 'create']);
     
     Route::delete("admin/list/products/{id}", [new productController, 'deletePros']);
