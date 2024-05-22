@@ -19,6 +19,7 @@ class Controller
         foreach ($data as $key => $value) {
 
             $$key = $value;
+            // var_dump($$key);
         }
         $ViewPast = self::VIEW_FOLDER_NAME . '/' . str_replace(".", '/', $ViewPast) . ".php";
 

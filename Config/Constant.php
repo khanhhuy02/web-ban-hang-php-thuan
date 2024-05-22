@@ -7,3 +7,4 @@ const ROOT_URL = "/mvc/";
 
 const ROOT_PASH = __DIR__ ."/../";
 const assetss = "/..".ROOT_URL."public/";
+const administrators="admin";

@@ -145,14 +145,127 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
 
                     if (mainCategoriesSelect.value == 1) {
-                        phoneFields.style.display = 'block';
-                        laptopFields.style.display = 'none';
+                        phoneFields.innerHTML = `
+                            <tr>
+                                <th scope="row">Màng Hình</th>
+                                <td colspan='3' style="width: 79%;"><input type="text" name="screen" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Hệ điều hành</th>
+                                <td colspan='3'><input type="text" name="operating_system" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Camera Trước</th>
+                                <td colspan='3'><input type="text" name="camera_before" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Camera sau</th>
+                                <td colspan='3'><input type="text" name="camera_after" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Vi xử lý (chip)</th>
+                                <td colspan='3'><input type="text" name="chip" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            <tr>
+                                <th scope="row">Ram</th>
+                                <td colspan='3'><input type="text" name="ram" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+
+                                <th scope="row">bộ lưu trữ</th>
+                                <td colspan='3'><input type="text" name="capacity" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Sim</th>
+                                <td colspan='3'><input type="text" name="sim" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Dung lượng pin</th>
+                                <td colspan='3'><input type="text" name="pin" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">ngày ra mắt sản phẩm</th>
+                                <td colspan='3'><input type="date" name="meeting_day" class="col-12 p-1"></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        
+                        `;
+                        laptopFields.innerHTML = '';
                     } else if (mainCategoriesSelect.value == 2) {
-                        phoneFields.style.display = 'none';
-                        laptopFields.style.display = 'block';
+                        laptopFields.innerHTML = `
+                    <tr>
+                        <th scope="row">Màng Hình</th>
+                        <td colspan='3' style="width: 79%;"><input type="text" name="screen" class="col-12 p-1"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Hệ điều hành</th>
+                        <td colspan='3'><input type="text" name="operating_system" class="col-12 p-1"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Camera Trước</th>
+                        <td colspan='3'><input type="text" name="camera_before" class="col-12 p-1"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">Vi xử lý (CPU)</th>
+                        <td colspan='3'><input type="text" name="chip" class="col-12 p-1"></td>
+                        <td></td>
+                        <td></td>
+                    <tr>
+                        <th scope="row">Ram</th>
+                        <td colspan='3'><input type="text" name="ram" class="col-12 p-1"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+
+                        <th scope="row">bộ lưu trữ(ổ cứng)</th>
+                        <td colspan='3'><input type="text" name="capacity" class="col-12 p-1"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Dung lượng pin</th>
+                        <td colspan='3'><input type="text" name="pin" class="col-12 p-1"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">ngày ra mắt sản phẩm</th>
+                        <td colspan='3'><input type="date" name="meeting_day" class="col-12 p-1"></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                        `;
+                        phoneFields.innerHTML = '';
+
                     } else {
-                        phoneFields.style.display = 'none';
-                        laptopFields.style.display = 'none';
+                        phoneFields.innerHTML = '';
+                        laptopFields.innerHTML = '';
                     }
                 } else {
                     console.error(xhr.statusText);
@@ -166,4 +279,6 @@ document.addEventListener('DOMContentLoaded', function () {
             xhr.send();
         }
     });
+
+
 });

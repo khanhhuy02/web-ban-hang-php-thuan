@@ -141,7 +141,7 @@
                                                             <label for="">Loại</label>
                                                             <select name="categories_id" class="form-select form-select-sm main-categories-id" aria-label="Small select example">
                                                                 <?php foreach ($listCat as $item) : ?>
-                                                                    <option value="<?= $item['id'] ?>" data-url="<?= ROOT_URL ?>admin/create/product/<?= $item['id'] ?>/<?= $item['alias']?>">
+                                                                    <option value="<?= $item['id'] ?>" data-url="<?= ROOT_URL ?>admin/create/product/<?= $item['id'] ?>/<?= $item['alias'] ?>">
                                                                         <?= $item['names'] ?>
                                                                     </option>
                                                                 <?php endforeach ?>
@@ -178,125 +178,20 @@
                                                         </tr>
                                                     </thead>
 
-                                              
-                                                
+
+                                                    <!-- điện thoại start -->
+                                                    <tbody id="phone-fields" class="w-100">
                                          
-                                                        <tbody id="phone-fields" style="display:none;">
-                                                            <tr>
-                                                                <th scope="row">Màng Hình</th>
-                                                                <td colspan='3'><input type="text" name="screen" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Hệ điều hành</th>
-                                                                <td colspan='3'><input type="text" name="operating_system" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Camera Trước</th>
-                                                                <td colspan='3'><input type="text" name="camera_before" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Camera sau</th>
-                                                                <td colspan='3'><input type="text" name="camera_after" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Vi xử lý (chip)</th>
-                                                                <td colspan='3'><input type="text" name="chip" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            <tr>
-                                                                <th scope="row">Ram</th>
-                                                                <td colspan='3'><input type="text" name="ram" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
+                                                    </tbody>
+                                                    <!-- điện thoại end -->
 
-                                                                <th scope="row">bộ lưu trữ</th>
-                                                                <td colspan='3'><input type="text" name="capacity" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Sim</th>
-                                                                <td colspan='3'><input type="text" name="sim" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Dung lượng pin</th>
-                                                                <td colspan='3'><input type="text" name="pin" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">ngày ra mắt sản phẩm</th>
-                                                                <td colspan='3'><input type="date" name="meeting_day" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                        </tbody>
-                                            
-                                                        <tbody id="laptop-fields" style="display:none;">
-                                                            <tr>
-                                                                <th scope="row">Màng Hình</th>
-                                                                <td colspan='3'><input type="text" name="screen" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Hệ điều hành</th>
-                                                                <td colspan='3'><input type="text" name="operating_system" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Camera Trước</th>
-                                                                <td colspan='3'><input type="text" name="camera_before" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
+                                                    <!-- máy tính start -->
+                                                    <tbody id="laptop-fields" class="w-100">
+                                           
+                                                    </tbody>
+                                                    <!-- máy tính end -->
 
-                                                            <tr>
-                                                                <th scope="row">Vi xử lý (CPU)</th>
-                                                                <td colspan='3'><input type="text" name="chip" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            <tr>
-                                                                <th scope="row">Ram</th>
-                                                                <td colspan='3'><input type="text" name="ram" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                <th scope="row">bộ lưu trữ(ổ cứng)</th>
-                                                                <td colspan='3'><input type="text" name="capacity" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">Dung lượng pin</th>
-                                                                <td colspan='3'><input type="text" name="pin" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">ngày ra mắt sản phẩm</th>
-                                                                <td colspan='3'><input type="date" name="meeting_day" class="col-12 p-1"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                            </tr>
-                                                        </tbody>
-                                                
-
+                                                  
                                                 </table>
                                             </div>
 
@@ -327,7 +222,7 @@
 
 
 
-                        <!-- MÁY TÍNH BÀN END -->
+                    <!-- MÁY TÍNH BÀN END -->
 
 
 

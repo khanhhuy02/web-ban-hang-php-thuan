@@ -43,10 +43,15 @@ switch ($titleTag) {
         include_once $ViewPast;
         include_once __DIR__ . "/inc/footer.php";
         break;
-    default :
-    redirect('trang-khong-ton-tai');
-    break;
 
+    case "Tài Khoản của tôi":
+        include_once __DIR__ . "/inc/header.php";
+        include_once $ViewPast;
+        include_once __DIR__ . "/inc/footer.php";
+        break;
+    default:
+        redirect('trang-khong-ton-tai');
+        break;
 }
 
 ?>

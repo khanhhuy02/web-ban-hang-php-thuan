@@ -59,7 +59,7 @@ class database
         try {
             $stmt = self::$conn->prepare($sql);  //    $stmt = $pdo->prepare('SELECT id, name FROM users WHERE id=?');
             $stmt->execute($params); // $params = [id = id , name = name, img = img]
-            $rowCount = $stmt->rowCount(); // truy vấn 
+            $rowCount = $stmt->rowCount(); // truy vấn
             return $rowCount;
         } catch (PDOException $e) {
             die("Lỗi truy vấn: " . $e->getMessage());

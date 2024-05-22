@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="<?=assetss?>assetsAdmin/vendors/material_icon/material-icons.css" />
 
     <link rel="stylesheet" href="<?=assetss?>assetsAdmin/css/metisMenu.css">
+    <link rel="stylesheet" href="<?=assetss?>assetPHP/css/css.css">
 
     <link rel="stylesheet" href="<?=assetss?>assetsAdmin/css/style1.css" />
     <link rel="stylesheet" href="<?=assetss?>assetsAdmin/css/colors/default.css" id="colorSkinCSS">

@@ -52,9 +52,9 @@
 
 
                 <?php foreach ($listCat as $cate => $item) {
-                    if ( $item['id'] == $lists['categories_id'] && $item['classify'] == 1) { ?>
+                    if ($item['id'] == $lists['categories_id'] && $item['classify'] == 1) { ?>
 
-                        <form action="<?= ROOT_URL?>admin/edit/product/<?=$lists['id']?>" method="post" enctype="multipart/form-data" class="row">
+                        <form action="<?= ROOT_URL ?>admin/edit/product/<?= $lists['id'] ?>" method="post" enctype="multipart/form-data" class="row">
                             <!-- ĐIỆN THOẠI START -->
                             <div class="row ">
                                 <div class="col-12">
@@ -63,7 +63,7 @@
                                             <div class="row">
                                                 <div class="col-lg-6 align-self-center"><img src="" alt="" class="mx-auto d-block" height="50%" width="50%">
 
-                                                    <input type="file" name="image" class="mt-5" value="<?php echo $lists['image']?>">
+                                                    <input type="file" name="image" class="mt-5" value="<?php echo $lists['image'] ?>">
                                                     <?php if (isset($errors)) : ?>
                                                         <span style="color: brown;"><?php echo $errors; ?></span>
                                                     <?php endif; ?>
@@ -75,19 +75,19 @@
                                                     <div class="single-pro-detail">
                                                         <p class="mb-1">Điện thoại</p>
                                                         <div class="custom-border mb-3"></div>
-                                                        <input type="text" name="name" id="" class="p-2 col-10" value="<?php echo $lists['name']?>">
+                                                        <input type="text" name="name" id="" class="p-2 col-10" value="<?php echo $lists['name'] ?>">
                                                         <div class="mb-3"></div>
 
                                                         <div class="row">
                                                             <div class="col-4 ml-2">
                                                                 <label for="">Giá cả</label>
-                                                                <input type="number" name="price_old" value="<?php echo $lists['price_old']?>">
+                                                                <input type="number" name="price_old" value="<?php echo $lists['price_old'] ?>">
                                                             </div>
 
 
                                                             <div class="col-4">
                                                                 <label for="">Giá giảm</label>
-                                                                <input type="number" name="price_new" value="<?php echo $lists['price_new']?>">
+                                                                <input type="number" name="price_new" value="<?php echo $lists['price_new'] ?>">
                                                             </div>
                                                         </div>
 
@@ -104,27 +104,25 @@
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <label for="">Loại</label>
-                                                                <select name="categories_id" class="form-select form-select-sm" aria-label="Small select example">
+                                                                <select name="categories_id" class="form-select form-select-sm main-categories-id" aria-label="Small select example">
                                                                     <?php foreach ($listCat as $item) : ?>
-                                                                        <option value="<?= $item['id'] ?>"><?= $item['names'] ?></option>
+                                                                        <option value="<?= $item['id'] ?>"  data-url="<?= ROOT_URL ?>admin/create/product/<?= $item['id'] ?>/<?= $item['alias'] ?>"><?= $item['names'] ?></option>
                                                                     <?php endforeach ?>
 
                                                                 </select>
                                                             </div>
                                                             <div class="col-4">
                                                                 <label for="">Hãng</label>
-                                                                <select name="brands_id" class="form-select form-select-sm" aria-label="Small select example">
-                                                                    <?php foreach ($listBar as $item) : ?>
-                                                                        <option value="<?= $item['id'] ?>"><?= $item['names'] ?></option>
-                                                                    <?php endforeach ?>
+                                                                <select name="brands_id" id="subcategory" class="form-select form-select-sm subcategory" aria-label="Small select example">
+                                                               
                                                                 </select>
                                                             </div>
                                                         </div>
-                          
+
                                                         <div class=" mt-3 col-10 ">
                                                             <label for="">Số lượng trong kho </label>
 
-                                                            <input class="form-control form-control-sm" name="quantity" type="number" min="0"  value="<?php echo $lists['quantity']?>" id="example-number-input">
+                                                            <input class="form-control form-control-sm" name="quantity" type="number" min="0" value="<?php echo $lists['quantity'] ?>" id="example-number-input">
                                                             <!-- <a href="" class="btn theme_bg_6 text-white px-4 d-inline-block "><i class="fa fa-cart-plus me-2"></i>Add to Cart</a> -->
                                                         </div>
                                                     </div>
@@ -146,55 +144,55 @@
                                                         <tbody>
                                                             <tr>
                                                                 <th scope="row">Màng Hình</th>
-                                                                <td colspan='3'><input type="text" name="screen" class="col-12 p-1" value="<?php echo $lists['screen']?>"></td>
+                                                                <td colspan='3'><input type="text" name="screen" class="col-12 p-1" value="<?php echo $lists['screen'] ?>"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Hệ điều hành</th>
-                                                                <td colspan='3'><input type="text" name="operating_system" class="col-12 p-1" value="<?php echo $lists['operating_system']?>"></td>
+                                                                <td colspan='3'><input type="text" name="operating_system" class="col-12 p-1" value="<?php echo $lists['operating_system'] ?>"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Camera Trước</th>
-                                                                <td colspan='3'><input type="text" name="camera_before" class="col-12 p-1" value="<?php echo $lists['camera_before']?>"></td>
+                                                                <td colspan='3'><input type="text" name="camera_before" class="col-12 p-1" value="<?php echo $lists['camera_before'] ?>"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Camera sau</th>
-                                                                <td colspan='3'><input type="text" name="camera_after" class="col-12 p-1"  value="<?php echo $lists['camera_after']?>"></td>
+                                                                <td colspan='3'><input type="text" name="camera_after" class="col-12 p-1" value="<?php echo $lists['camera_after'] ?>"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Vi xử lý (chip)</th>
-                                                                <td colspan='3'><input type="text" name="chip" class="col-12 p-1" value="<?php echo $lists['chip']?>"></td>
+                                                                <td colspan='3'><input type="text" name="chip" class="col-12 p-1" value="<?php echo $lists['chip'] ?>"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             <tr>
                                                                 <th scope="row">Ram</th>
-                                                                <td colspan='3'><input type="text" name="ram" class="col-12 p-1" value="<?php echo $lists['ram']?>"></td>
+                                                                <td colspan='3'><input type="text" name="ram" class="col-12 p-1" value="<?php echo $lists['ram'] ?>"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
 
                                                                 <th scope="row">bộ lưu trữ</th>
-                                                                <td colspan='3'><input type="text" name="capacity" class="col-12 p-1" value="<?php echo $lists['capacity']?>"></td>
+                                                                <td colspan='3'><input type="text" name="capacity" class="col-12 p-1" value="<?php echo $lists['capacity'] ?>"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Sim</th>
-                                                                <td colspan='3'><input type="text" name="sim" class="col-12 p-1"  value="<?php echo $lists['sim']?>"></td>
+                                                                <td colspan='3'><input type="text" name="sim" class="col-12 p-1" value="<?php echo $lists['sim'] ?>"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
                                                             <tr>
                                                                 <th scope="row">Dung lượng pin</th>
-                                                                <td colspan='3'><input type="text" name="pin" class="col-12 p-1" value="<?php echo $lists['pin']?>"></td>
+                                                                <td colspan='3'><input type="text" name="pin" class="col-12 p-1" value="<?php echo $lists['pin'] ?>"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                             </tr>
@@ -214,7 +212,7 @@
 
                                                         <textarea name="description" id="editor1" rows="100" cols="100">
 
-                                                        <?php echo $lists['description']?>
+                                                        <?php echo $lists['description'] ?>
                                                         </textarea>
 
                                                     </div>
@@ -241,7 +239,7 @@
                         </form>
 
                     <?php
-                    } else if ( $item['id'] == $lists['categories_id'] && $item['classify'] == 2) { ?>
+                    } else if ($item['id'] == $lists['categories_id'] && $item['classify'] == 2) { ?>
                         <!-- LAPTOP START -->
                         <form action="" method="post" enctype="multipart/form-data" class=" row">
 

@@ -20,7 +20,6 @@ class Product extends ModelsDatabase
         $spl = "UPDATE $table SET $key where id = ?";
         $values[] = $id;
         $result = parent::execute($spl, $values);
-        var_dump($result);
         return $result;
     }
 

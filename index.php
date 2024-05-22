@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 'Off');
 session_start();
+// echo $_SESSION['id'] ; 
 // $_SESSION['logged_in'] = true;
 use Support\src\Route;
 
@@ -17,6 +18,7 @@ $arr = explode("?", $path);
 $route = strtolower(trim($arr[0], '/'));
 
 $method = $_SERVER['REQUEST_METHOD'];
+
 
 $action = Route::$routes[$method][$route];
 
@@ -68,9 +70,9 @@ if ($routeMatched) {
         call_user_func_array([$controller, $methodName], $arguments);
     }
 } 
-else {
-    redirect("trang-khong-ton-tai");
-}
+// else {
+//     redirect("trang-khong-ton-tai");
+// }
 ?>
 
 

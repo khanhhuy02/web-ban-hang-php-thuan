@@ -80,7 +80,7 @@
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <?php if (isset($_SESSION['name'])) { ?>
                                     <li><a class='dropdown-item' href='my-account.html'><?php echo $_SESSION['name']; ?></a></li>
-                                    <li><a class='dropdown-item' href='<?= ROOT_URL ?>dang-nhap'>Thoát</a></li>
+                                    <li><a class='dropdown-item' href='<?= ROOT_URL ?><?=administrators?>/logout'>Thoát</a></li>
                                 <?php } else { ?>
                                     <li><a class='dropdown-item' href='<?= ROOT_URL ?>dang-nhap'>Đăng nhập</a></li>
                                 <?php } ?>

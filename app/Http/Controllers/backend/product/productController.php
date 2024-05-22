@@ -42,10 +42,8 @@ class productController extends Controller
 
     public function ShowCreSub($id, $param)
     {
-        $titleTag = "Danh sách sản phẩm";
-
         $listBar = Brand::filterBra('brands', $id, $param);
-        $listCat = Category::Category();
+    
 
         header('Content-Type: application/json');
         echo json_encode($listBar);

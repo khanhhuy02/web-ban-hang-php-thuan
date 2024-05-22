@@ -23,9 +23,11 @@ class LoginController extends Controller
         if ($login['role'] === 1) {
             $_SESSION['role'] = $login['role'];
             $_SESSION['name'] = $login['name'];
+            $_SESSION['id'] = $login['id'];
 
             redirect('admin');
         } else if ($login['role'] === 0) {
+            $_SESSION['role'] = $login['role'];
             redirect('');
         } else {
             redirect('admin/dang-nhap');
@@ -73,22 +75,20 @@ class LoginController extends Controller
 
         // } 
 
-        $password = $_POST['password'];
-        $options = [
-            'memory_cost' => 1024,
-            'time_cost' => 2,
-            'threads' => 2
-        ];
-        $hashedPassword = password_hash($password, PASSWORD_ARGON2I, $options);
-        $data = [
-            "name" => $_POST['name'],
-            "email" => $_POST['email'],
-            "password" =>  $hashedPassword,
-        ];
+        // $password = $_POST['password'];
+        // $options = [
+        //     'memory_cost' => 1024,
+        //     'time_cost' => 2,
+        //     'threads' => 2
+        // ];
+        // $hashedPassword = password_hash($password, PASSWORD_ARGON2I, $options);
+        // $data = [
+        //     "name" => $_POST['name'],
+        //     "email" => $_POST['email'],
+        //     "password" =>  $hashedPassword,
+        // ];
 
-        User::creRegister("users", $data);
-
-        redirect('admin/dang-nhap');
+        // User::creRegister("users", $data);
     }
 
     public function logout()
@@ -103,7 +103,7 @@ class LoginController extends Controller
         session_destroy();
 
         // Chuyển hướng người dùng về trang đăng nhập hoặc trang chủ
-        redirect('admin/dang-nhap');
+        redirect('dang-nhap');
         exit();
     }
 }

@@ -24,8 +24,9 @@ class LoginUresController extends Controller
         if ($login['role'] === 0) {
             $_SESSION['role'] = $login['role'];
             $_SESSION['name'] = $login['name'];
+            $_SESSION['id'] = $login['id'];
             redirect('');
-        }else{
+        } else {
             redirect('dang-nhap');
         }
         // if($login){
@@ -33,7 +34,7 @@ class LoginUresController extends Controller
         //     redirect('');
         // }
     }
-    public function  crelogin()
+    public function crelogin()
     {
 
         $password = $_POST['password'];
@@ -43,14 +44,25 @@ class LoginUresController extends Controller
             'threads' => 2
         ];
         $hashedPassword = password_hash($password, PASSWORD_ARGON2I, $options);
-        $data = [
+        $data1 = [
+            "id" => $_POST['id'],
             "name" => $_POST['name'],
             "email" => $_POST['email'],
             "password" =>  $hashedPassword,
         ];
-
-        User::creRegister("users", $data);
-
+        
+        $data_informations = [
+            "users_id" => $data1["id"],
+            "image" =>  "",
+            "phone" => null,
+            "address" =>  "",
+            
+        ];
+        User::creRegister("users", $data1, 'user_informations',$data_informations);
+        // Sửa: không cần truy cập thuộc tính 'id' của $success
+  
+        // var_dump($data_informations);
+        // exit;
         redirect('dang-nhap');
     }
 }
