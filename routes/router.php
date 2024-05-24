@@ -13,7 +13,6 @@ use Support\Middleware\authCheckuser;
 use Support\src\Route;
 
 $authCheck = new authCheckuser();
-const administrators = "admin";
 // Kiểm tra xem request đến từ trang admin hay không
 if ($authCheck->isLoggedIn() && $authCheck->isAdmin()) {
     // admin
@@ -47,9 +46,22 @@ if ($authCheck->isLoggedIn() && $authCheck->isAdmin()) {
 // login của user
 // Route::get("dang-ky", [new LoginController, 'register']);
 // Route::post("dang-ky", [new LoginController, 'creRegister']);
-// user
-Route::get("chitiet/sanpham", [new ShopController, 'detail']);
+// trang chủ 
+Route::get("{cate}/{name}", [new ShopController, 'detail']);// 
+Route::get("gio-hang", [new ShopController, 'cart']);
+Route::post("them-gio-hang", [new ShopController, 'addCart']);
+Route::post("gio-hang/{idProduct}", [new ShopController, 'deleteCart']);
+
+
+Route::post("danh-gia", [new HomeController, 'evaluate']);
+
 Route::get("", [new HomeController, 'index']);
+// chi tiết sản phẩm
+
+// Route::get("/{cate}/{name}", [new HomeController, 'detail']);
+
+
+
 
 // login của admin 
 Route::get(administrators ."/dang-nhap", [new LoginController, 'index']);
@@ -61,8 +73,10 @@ Route::get("trang-khong-ton-tai", [new errors404, 'index']);
 Route::get("dang-nhap", [new LoginUresController, 'index']);
 Route::post("dang-nhap", [new LoginUresController, 'login']);
 Route::post("dang-ky", [new LoginUresController, 'crelogin']);
+Route::get("logout", [new LoginUresController, 'logout']);
 
 // user profile 
 Route::get("tai-khoan-cua-toi", [new UsersUsersController, 'index']);
 Route::get("profile/edit/my-account/{id}", [new UsersUsersController, "showProfUser"]); // list user
 Route::post("profile/edit/my-account/{id}", [new UsersUsersController, "editProfUser"]); // list user
+

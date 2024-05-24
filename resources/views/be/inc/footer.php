@@ -22,6 +22,7 @@
 
 
 <script src="<?=assetss?>assetPHP/ajax.js"></script>
+<script src="<?=assetss?>assetPHP/js.js"></script>
 
 
 <script src="<?=assetss?>assetsAdmin/js/popper1.min.js"></script>

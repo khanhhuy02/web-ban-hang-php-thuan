@@ -100,4 +100,12 @@ class Product extends ModelsDatabase
 
         // return $result;
     }
+
+    public static function filterPro($tablet, $ids)
+    {
+        $ids = implode(',', $ids);
+        $sql = "SELECT * FROM $tablet WHERE id IN ($ids)";
+        $result = parent::query($sql);
+        return $result;
+    }
 }

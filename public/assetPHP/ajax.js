@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var mainCategoriesSelect = document.querySelector('.main-categories-id');
     var phoneFields = document.getElementById('phone-fields');
     var laptopFields = document.getElementById('laptop-fields');
-
+    // console.log(phoneFields);
     mainCategoriesSelect.addEventListener('change', function () {
         var selectedOption = this.options[this.selectedIndex];
         var url = selectedOption.getAttribute('data-url');
@@ -144,7 +144,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         selectElement.appendChild(option);
                     });
 
-                    if (mainCategoriesSelect.value == 1) {
+
+                    if (mainCategoriesSelect.value == 7) {
                         phoneFields.innerHTML = `
                             <tr>
                                 <th scope="row">Màng Hình</th>
@@ -209,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         
                         `;
                         laptopFields.innerHTML = '';
-                    } else if (mainCategoriesSelect.value == 2) {
+                    } else if (mainCategoriesSelect.value == 8) {
                         laptopFields.innerHTML = `
                     <tr>
                         <th scope="row">Màng Hình</th>
@@ -282,3 +283,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 });
+
+

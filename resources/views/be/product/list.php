@@ -92,7 +92,7 @@
                                         <tr>
                                             <td><?=  $stt++?></td>
                                             <td><?= $item['name'] ?></td>
-                                            <td><img src="<?= $item['image'] ?>" alt=""></td>
+                                            <td><img src="<?=ROOT_URL.$item['image']?>" alt="" class="w-75"></td>
 
                                             <td>
                                                 <?php

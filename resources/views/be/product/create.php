@@ -108,9 +108,15 @@
                                             <div class="col-lg-6 align-self-center">
                                                 <div class="single-pro-detail">
                                                     <p class="mb-1">Điện thoại</p>
-                                                    <div class="custom-border mb-3"></div>
-
-                                                    <input type="text" name="name" id="" class="p-2 col-10" placeholder="Tên sản phẩm....">
+                                                    <div class="custom-border mb-3">
+                                                        <label for="">Tên sản phẩm</label> <br>
+                                                    <input type="text" name="name" id="title" class="p-2 col-10" onkeyup="ChangeToSlug();">
+                                                    </div>
+                                                    <br>
+                                                    <div>
+                                                        <label for="">Đương đẫn sản phẩm</label> <br>
+                                                        <input type="text" id="slug" value="" size="50" name="alias_sp"/>
+                                                    </div>
                                                     <div class="mb-3"></div>
 
                                                     <div class="row">
@@ -181,17 +187,16 @@
 
                                                     <!-- điện thoại start -->
                                                     <tbody id="phone-fields" class="w-100">
-                                         
                                                     </tbody>
                                                     <!-- điện thoại end -->
 
                                                     <!-- máy tính start -->
                                                     <tbody id="laptop-fields" class="w-100">
-                                           
+
                                                     </tbody>
                                                     <!-- máy tính end -->
 
-                                                  
+
                                                 </table>
                                             </div>
 
@@ -395,3 +400,4 @@
             </div>
 
         </div>
+

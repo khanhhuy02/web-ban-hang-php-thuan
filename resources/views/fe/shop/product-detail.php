@@ -6,41 +6,28 @@
                  <!-- Swiper -->
                  <div class="swiper-container zoom-top">
                      <div class="swiper-wrapper">
-
-                         <div class="swiper-slide zoom-image-hover">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/zoom-image/1.jpg" alt="">
-                         </div>
-                         <div class="swiper-slide zoom-image-hover">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/zoom-image/2.jpg" alt="">
-                         </div>
-                         <div class="swiper-slide zoom-image-hover">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/zoom-image/3.jpg" alt="">
-                         </div>
-                         <div class="swiper-slide zoom-image-hover">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/zoom-image/4.jpg" alt="">
-                         </div>
-                         <div class="swiper-slide zoom-image-hover">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/zoom-image/5.jpg" alt="">
-                         </div>
+                         <?php $subimage = $detail[0]['sub_image'];
+                            foreach (explode(',', $subimage) as $itemImage) {    ?>
+                             <div class="swiper-slide zoom-image-hover">
+                                 <img class="img-responsive m-auto" src="<?= ROOT_URL . $itemImage ?>" alt="<?= $detail[0]['name'] ?>">
+                             </div>
+                         <?php
+                            }
+                            ?>
                      </div>
                  </div>
                  <div class="swiper-container zoom-thumbs slider-nav-style-1 small-nav mt-15px mb-15px">
+
                      <div class="swiper-wrapper">
-                         <div class="swiper-slide">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/1.jpg" alt="">
-                         </div>
-                         <div class="swiper-slide">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/2.jpg" alt="">
-                         </div>
-                         <div class="swiper-slide">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/3.jpg" alt="">
-                         </div>
-                         <div class="swiper-slide">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/4.jpg" alt="">
-                         </div>
-                         <div class="swiper-slide">
-                             <img class="img-responsive m-auto" src="<?=assetss?>assetsUser/images/product-image/5.jpg" alt="">
-                         </div>
+                         <?php $subimage = $detail[0]['sub_image'];
+                            foreach (explode(',', $subimage) as $itemImage) {    ?>
+
+                             <div class="swiper-slide">
+                                 <img class="img-responsive m-auto" src="<?= ROOT_URL . $itemImage ?>" alt="<?= $detail[0]['name'] ?>">
+                             </div>
+                         <?php
+                            }
+                            ?>
                      </div>
                      <!-- Add Arrows -->
                      <div class="swiper-buttons">
@@ -51,8 +38,8 @@
              </div>
              <div class="col-lg-7 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
                  <div class="product-details-content quickview-content">
-                     <h2>Originals Kaval Windbr</h2>
-                     <p class="reference">Reference:<span> demo_17</span></p>
+                     <h2><?= $detail[0]['name'] ?></h2>
+                     <p class="reference">Loại:<span> <b style="color: blue;"><?= $detail[0]['name_category'] ?></b></span></p>
                      <div class="pro-details-rating-wrap">
                          <div class="rating-product">
                              <i class="ion-android-star"></i>
@@ -65,10 +52,10 @@
                      </div>
                      <div class="pricing-meta">
                          <ul>
-                             <li class="old-price not-cut">$18.90</li>
+                             <li class="old-price not-cut"><?= number_format($detail[0]['price_new'], 0, ',', '.') ?></li>
                          </ul>
                      </div>
-                     <p class="quickview-para">Lorem ipsum dolor sit amet, consectetur adipisic elit eiusm tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim venialo quis nostrud exercitation ullamco</p>
+                     <!-- <p class="quickview-para">Lorem ipsum dolor sit amet, consectetur adipisic elit eiusm tempor incidid ut labore et dolore magna aliqua. Ut enim ad minim venialo quis nostrud exercitation ullamco</p> -->
                      <div class="pro-details-size-color d-flex">
                          <div class="pro-details-color-wrap">
                              <span>Color</span>
@@ -128,12 +115,9 @@
                      </div>
                      <div class="pro-details-policy">
                          <ul>
-                             <li><img src="<?=assetss?>assetsUser/images/icons/policy.png" alt="" /><span>Security Policy (Edit With
-                                     Customer Reassurance Module)</span></li>
-                             <li><img src="<?=assetss?>assetsUser/images/icons/policy-2.png" alt="" /><span>Delivery Policy (Edit
-                                     With Customer Reassurance Module)</span></li>
-                             <li><img src="<?=assetss?>assetsUser/images/icons/policy-3.png" alt="" /><span>Return Policy (Edit With
-                                     Customer Reassurance Module)</span></li>
+                             <li><img src="<?= assetss ?>assetsUser/images/icons/policy.png" alt="" /><span>Chính sách bảo mật</span></li>
+                             <li><img src="<?= assetss ?>assetsUser/images/icons/policy-2.png" alt="" /><span>Chính sách giao hàng</span></li>
+                             <li><img src="<?= assetss ?>assetsUser/images/icons/policy-3.png" alt="" /><span>Chính sách hoàn trả</span></li>
                          </ul>
                      </div>
                  </div>
@@ -148,67 +132,69 @@
      <div class="container">
          <div class="description-review-wrapper">
              <div class="description-review-topbar nav">
-                 <a data-bs-toggle="tab" href="#des-details1">Description</a>
-                 <a class="active" data-bs-toggle="tab" href="#des-details2">Product Details</a>
-                 <a data-bs-toggle="tab" href="#des-details3">Reviews (2)</a>
+                 <a data-bs-toggle="tab" href="#des-details1">Thông Tin Sản Phẩm</a>
+                 <a class="active" data-bs-toggle="tab" href="#des-details2">Thông Tin chi Tiết</a>
+                 <a data-bs-toggle="tab" href="#des-details3">Bình Luận</a>
              </div>
              <div class="tab-content description-review-bottom">
                  <div id="des-details2" class="tab-pane active">
                      <div class="product-anotherinfo-wrapper">
-                         <ul>
-                             <li><span>Weight</span> 400 g</li>
-                             <li><span>Dimensions</span>10 x 10 x 15 cm</li>
-                             <li><span>Materials</span> 60% cotton, 40% polyester</li>
-                             <li><span>Other Info</span> American heirloom jean shorts pug seitan letterpress</li>
+                         <ul class="row">
+                             <li class="w-100"><span class="col-lg-2">Màn hình:</span><span class="col-lg-9"><?= $detail[0]['screen'] ?></span></li>
+                             <li class="w-100"><span class="col-lg-2">Hệ điều hành:</span><span class="col-lg-9"><?= $detail[0]['operating_system'] ?></span></li>
+                             <li class="w-100"><span class="col-lg-2">Camera sau:</span><span class="col-lg-9"><?= $detail[0]['camera_before'] ?></span></li>
+                             <li class="w-100"><span class="col-lg-2">Camera trước:</span><span class="col-lg-9"><?= $detail[0]['camera_after'] ?></span></li>
+                             <li class="w-100"><span class="col-lg-2">Chip:</span><span class="col-lg-9"><?= $detail[0]['chip'] ?></span></li>
+                             <li class="w-100"><span class="col-lg-2">RAM:</span><span class="col-lg-9"><?= $detail[0]['ram'] ?></span></li>
+                             <li class="w-100"><span class="col-lg-2">Dung lượng lưu trữ:</span><span class="col-lg-9"><?= $detail[0]['capacity'] ?></span></li>
+                             <li class="w-100"><span class="col-lg-2">SIM:</span><span class="col-lg-9"><?= $detail[0]['pin'] ?></span></li>
+                             <li class="w-100"><span class="col-lg-2">Pin, Sạc:</span><span class="col-lg-9"><?= $detail[0]['sim'] ?></span></li>
+                             <li class="w-100"><span class="col-lg-2">Ngày phát hành:</span><span class="col-lg-9"><?= $detail[0]['meeting_day'] ?></span></li>
                          </ul>
                      </div>
                  </div>
                  <div id="des-details1" class="tab-pane">
                      <div class="product-description-wrapper">
-                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit, sed do eiusmod tempor incididunt
-                         </p>
-                         <p>
-                             ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commo consequat. Duis aute irure dolor in reprehend in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                             occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                         </p>
+                         <?= $detail[0]['description'] ?>
                      </div>
                  </div>
                  <div id="des-details3" class="tab-pane">
                      <div class="row">
-                         <div class="col-lg-7">
+                         <div class="col-lg-12">
                              <div class="review-wrapper">
-                                 <div class="single-review">
-                                     <div class="review-img">
-                                         <img src="<?=assetss?>assetsUser/images/review-image/1.png" alt="" />
-                                     </div>
-                                     <div class="review-content">
-                                         <div class="review-top-wrap">
-                                             <div class="review-left">
-                                                 <div class="review-name">
-                                                     <h4>White Lewis</h4>
+                                 <?php foreach ($commnen as $key => $value) { ?>
+                                     <div class="single-review">
+                                         <div class="review-img">
+                                             <img src="<?= assetss ?>assetsUser/images/review-image/1.png" alt="" />
+                                         </div>
+                                         <div class="review-content">
+                                             <div class="review-top-wrap">
+                                                 <div class="review-left">
+                                                     <div class="review-name">
+                                                         <h4><?=$value['name']?></h4>
+                                                     </div>
+                                                     <div class="rating-product">
+                                                         <i class="ion-android-star"></i>
+                                                         <i class="ion-android-star"></i>
+                                                         <i class="ion-android-star"></i>
+                                                         <i class="ion-android-star"></i>
+                                                         <i class="ion-android-star"></i>
+                                                     </div>
                                                  </div>
-                                                 <div class="rating-product">
-                                                     <i class="ion-android-star"></i>
-                                                     <i class="ion-android-star"></i>
-                                                     <i class="ion-android-star"></i>
-                                                     <i class="ion-android-star"></i>
-                                                     <i class="ion-android-star"></i>
-                                                 </div>
+                                                 <!-- <div class="review-left">
+                                                     <a href="#">Reply</a>
+                                                 </div> -->
                                              </div>
-                                             <div class="review-left">
-                                                 <a href="#">Reply</a>
+                                             <div class="review-bottom">
+                                                 <p>
+                                                 <?=$value['content']?>
+                                                 </p>
                                              </div>
                                          </div>
-                                         <div class="review-bottom">
-                                             <p>
-                                                 Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper euismod vehicula. Phasellus quam nisi, congue id nulla.
-                                             </p>
-                                         </div>
                                      </div>
-                                 </div>
-                                 <div class="single-review child-review">
+                                     <!-- <div class="single-review child-review">
                                      <div class="review-img">
-                                         <img src="<?=assetss?>assetsUser/images/review-image/2.png" alt="" />
+                                         <img src="<?= assetss ?>assetsUser/images/review-image/2.png" alt="" />
                                      </div>
                                      <div class="review-content">
                                          <div class="review-top-wrap">
@@ -232,14 +218,17 @@
                                              <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper euismod vehicula.</p>
                                          </div>
                                      </div>
-                                 </div>
+                                 </div> -->
                              </div>
+                         <?php
+                                    } ?>
                          </div>
-                         <div class="col-lg-5">
+                         <!-- gửi bình luận -->
+                         <div class="col-lg-12">
                              <div class="ratting-form-wrapper pl-50">
-                                 <h3>Add a Review</h3>
+                                 <h3>Đánh Giá</h3>
                                  <div class="ratting-form">
-                                     <form action="#">
+                                     <form action="<?= ROOT_URL ?>danh-gia" method="post">
                                          <div class="star-box">
                                              <span>Your rating:</span>
                                              <div class="rating-product">
@@ -251,19 +240,16 @@
                                              </div>
                                          </div>
                                          <div class="row">
-                                             <div class="col-md-6">
+                                             <div class="col-md-12">
                                                  <div class="rating-form-style">
-                                                     <input placeholder="Name" type="text" />
-                                                 </div>
-                                             </div>
-                                             <div class="col-md-6">
-                                                 <div class="rating-form-style">
-                                                     <input placeholder="Email" type="email" />
+                                                     <input placeholder="Name" type="text" value="<?= $_SESSION["name"] ?>" />
+                                                     <input type="hidden" name="users_id" value="<?= $_SESSION["id"] ?>">
+                                                     <input type="hidden" name="products_id" value="<?= $detail[0]["id"] ?>">
                                                  </div>
                                              </div>
                                              <div class="col-md-12">
                                                  <div class="rating-form-style form-submit">
-                                                     <textarea name="Your Review" placeholder="Message"></textarea>
+                                                     <textarea name="content"></textarea>
                                                      <button class="btn btn-primary btn-hover-color-primary " type="submit" value="Submit">Submit</button>
                                                  </div>
                                              </div>
@@ -299,8 +285,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/1.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/2.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/1.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/2.jpg" alt="Product" />
                              </a>
                              <span class="badges">
                                  <span class="sale">-10%</span>
@@ -328,8 +314,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/3.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/4.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/3.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/4.jpg" alt="Product" />
                              </a>
                              <span class="badges">
                                  <span class="sale">-7%</span>
@@ -356,8 +342,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/5.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/6.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/5.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/6.jpg" alt="Product" />
                              </a>
                              <span class="badges d-none">
                                  <span class="new">New</span>
@@ -383,8 +369,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/7.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/8.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/7.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/8.jpg" alt="Product" />
                              </a>
                              <span class="badges">
                                  <span class="new">New</span>
@@ -410,8 +396,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/9.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/10.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/9.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/10.jpg" alt="Product" />
                              </a>
                              <span class="badges">
                                  <span class="sale">-5%</span>
@@ -465,8 +451,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/1.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/2.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/1.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/2.jpg" alt="Product" />
                              </a>
                              <span class="badges">
                                  <span class="sale">-10%</span>
@@ -494,8 +480,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/3.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/4.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/3.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/4.jpg" alt="Product" />
                              </a>
                              <span class="badges">
                                  <span class="sale">-7%</span>
@@ -522,8 +508,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/5.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/6.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/5.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/6.jpg" alt="Product" />
                              </a>
                              <span class="badges d-none">
                                  <span class="new">New</span>
@@ -549,8 +535,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/7.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/8.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/7.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/8.jpg" alt="Product" />
                              </a>
                              <span class="badges">
                                  <span class="new">New</span>
@@ -576,8 +562,8 @@
                      <div class="product">
                          <div class="thumb">
                              <a class='image' href='shop-left-sidebar.html'>
-                                 <img src="<?=assetss?>assetsUser/images/product-image/9.jpg" alt="Product" />
-                                 <img class="hover-image" src="<?=assetss?>assetsUser/images/product-image/10.jpg" alt="Product" />
+                                 <img src="<?= assetss ?>assetsUser/images/product-image/9.jpg" alt="Product" />
+                                 <img class="hover-image" src="<?= assetss ?>assetsUser/images/product-image/10.jpg" alt="Product" />
                              </a>
                              <span class="badges">
                                  <span class="sale">-5%</span>

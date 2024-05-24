@@ -50,7 +50,7 @@
                                 xhr.onload = function() {
                                     if (xhr.status === 200) {
                                         var informationAdmin = JSON.parse(xhr.responseText);
-                                        console.log(informationAdmin);
+                                        // console.log(informationAdmin);
                                         showProfileAdmin.innerHTML = `
                                              <div class="col-lg-12 mb-3">
                                     

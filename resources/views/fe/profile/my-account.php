@@ -64,7 +64,7 @@
                                                             xhr.onload = function() {
                                                                 if (xhr.status === 200) {
                                                                     var informationUser = JSON.parse(xhr.responseText);
-                                                                    console.log(informationUser);
+                                                                    // console.log(informationUser);
                                                                     showProfileUser.innerHTML = `
                                                                             <div class="col-lg-12 mb-3">
                                                                     

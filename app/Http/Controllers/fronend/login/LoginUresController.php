@@ -24,7 +24,7 @@ class LoginUresController extends Controller
         if ($login['role'] === 0) {
             $_SESSION['role'] = $login['role'];
             $_SESSION['name'] = $login['name'];
-            $_SESSION['id'] = $login['id'];
+            $_SESSION['user_id']= $login['id'];
             redirect('');
         } else {
             redirect('dang-nhap');
@@ -50,19 +50,35 @@ class LoginUresController extends Controller
             "email" => $_POST['email'],
             "password" =>  $hashedPassword,
         ];
-        
+
         $data_informations = [
             "users_id" => $data1["id"],
             "image" =>  "",
             "phone" => null,
             "address" =>  "",
-            
+
         ];
-        User::creRegister("users", $data1, 'user_informations',$data_informations);
+        User::creRegister("users", $data1, 'user_informations', $data_informations);
         // Sửa: không cần truy cập thuộc tính 'id' của $success
-  
+
         // var_dump($data_informations);
         // exit;
         redirect('dang-nhap');
+    }
+
+    public function logout()
+    {
+        // logout.php
+        session_start();
+
+        // Xóa tất cả các biến session
+        session_unset();
+
+        // Hủy phiên làm việc
+        session_destroy();
+
+        // Chuyển hướng người dùng về trang đăng nhập hoặc trang chủ
+        redirect('dang-nhap');
+        exit();
     }
 }

@@ -49,6 +49,11 @@ switch ($titleTag) {
         include_once $ViewPast;
         include_once __DIR__ . "/inc/footer.php";
         break;
+    case "Trang giỏ hàng":
+        include_once __DIR__ . "/inc/header.php";
+        include_once $ViewPast;
+        include_once __DIR__ . "/inc/footer.php";
+        break;
     default:
         redirect('trang-khong-ton-tai');
         break;

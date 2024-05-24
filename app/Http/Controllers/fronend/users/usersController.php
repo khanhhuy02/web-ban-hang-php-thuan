@@ -67,6 +67,6 @@ class usersController extends Controller
 
       User::updateIdOther('user_informations',  $data2, "users_id", $id);
 
-      redirect("admin/profile/user");
+      redirect("tai-khoan-cua-toi");
    }
 }

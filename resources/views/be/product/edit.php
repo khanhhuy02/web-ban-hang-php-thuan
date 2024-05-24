@@ -74,8 +74,15 @@
                                                 <div class="col-lg-6 align-self-center">
                                                     <div class="single-pro-detail">
                                                         <p class="mb-1">Điện thoại</p>
-                                                        <div class="custom-border mb-3"></div>
-                                                        <input type="text" name="name" id="" class="p-2 col-10" value="<?php echo $lists['name'] ?>">
+                                                        <div class="custom-border mb-3">
+                                                            <label for="">Tên sản phẩm</label> <br>
+                                                            <input type="text" name="name" id="title" class="p-2 col-10" onkeyup="ChangeToSlug();">
+                                                        </div>
+                                                        <br>
+                                                        <div>
+                                                            <label for="">Đương đẫn sản phẩm</label> <br>
+                                                            <input type="text" id="slug" value="<?php echo $lists['alias_sp'] ?>" size="50" name="alias_sp" />
+                                                        </div>
                                                         <div class="mb-3"></div>
 
                                                         <div class="row">
@@ -106,7 +113,7 @@
                                                                 <label for="">Loại</label>
                                                                 <select name="categories_id" class="form-select form-select-sm main-categories-id" aria-label="Small select example">
                                                                     <?php foreach ($listCat as $item) : ?>
-                                                                        <option value="<?= $item['id'] ?>"  data-url="<?= ROOT_URL ?>admin/create/product/<?= $item['id'] ?>/<?= $item['alias'] ?>"><?= $item['names'] ?></option>
+                                                                        <option value="<?= $item['id'] ?>" data-url="<?= ROOT_URL ?>admin/create/product/<?= $item['id'] ?>/<?= $item['alias'] ?>"><?= $item['names'] ?></option>
                                                                     <?php endforeach ?>
 
                                                                 </select>
@@ -114,7 +121,7 @@
                                                             <div class="col-4">
                                                                 <label for="">Hãng</label>
                                                                 <select name="brands_id" id="subcategory" class="form-select form-select-sm subcategory" aria-label="Small select example">
-                                                               
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -257,10 +264,15 @@
                                                 <div class="col-lg-6 align-self-center">
                                                     <div class="single-pro-detail">
                                                         <p class="mb-1">Laptop</p>
-                                                        <div class="custom-border mb-3"></div>
-                                                        <input type="text" name="name" id="" class="p-2 col-8" placeholder="Tên sản phẩm....">
+                                                        <div class="custom-border mb-3">
+                                                            <label for="">Tên sản phẩm</label> <br>
+                                                            <input type="text" name="name" id="title" class="p-2 col-10" onkeyup="ChangeToSlug();">
+                                                        </div>
+                                                        <br>
+                                                        <div>
+                                                            <label for="">Đương đẫn sản phẩm</label> <br>
+                                                            <input type="text" id="slug" value="<?php echo $lists['alias_sp'] ?>" size="50" name="alias_sp" />                                                        </div>
                                                         <div class="mb-3"></div>
-
                                                         <div class="row">
                                                             <div class="col-4">
                                                                 <label for="">Giá cả</label>

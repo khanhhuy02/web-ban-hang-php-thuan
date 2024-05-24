@@ -79,8 +79,9 @@
                             <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown"><i class="icon-user"></i></button>
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <?php if (isset($_SESSION['name'])) { ?>
-                                    <li><a class='dropdown-item' href='my-account.html'><?php echo $_SESSION['name']; ?></a></li>
-                                    <li><a class='dropdown-item' href='<?= ROOT_URL ?><?=administrators?>/logout'>Thoát</a></li>
+                                    <li><a class='dropdown-item tai-khoang-user' href='<?= ROOT_URL ?>tai-khoan-cua-toi'><?php echo $_SESSION['name']; ?></a></li>
+                        
+                                    <li><a class='dropdown-item' href='<?= ROOT_URL ?>logout'>Thoát</a></li>
                                 <?php } else { ?>
                                     <li><a class='dropdown-item' href='<?= ROOT_URL ?>dang-nhap'>Đăng nhập</a></li>
                                 <?php } ?>

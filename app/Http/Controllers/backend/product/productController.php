@@ -43,7 +43,7 @@ class productController extends Controller
     public function ShowCreSub($id, $param)
     {
         $listBar = Brand::filterBra('brands', $id, $param);
-    
+
 
         header('Content-Type: application/json');
         echo json_encode($listBar);
@@ -107,6 +107,7 @@ class productController extends Controller
             'image' => $destination,
             'sub_image' => $sub_image,
             'name' => $_POST['name'],
+            'alias_sp' => $_POST['alias_sp'],
             'price_old' => $_POST['price_old'],
             'price_new' => $_POST['price_new'],
             'hidden' => $_POST['hidden'],
@@ -125,8 +126,9 @@ class productController extends Controller
             'chip' => $_POST['chip'],
             'description' => $_POST['description'],
         ];
-
-
+        // echo "pre";
+        // print_r($data);
+        // exit;
         if ($hasError) {
             $listCat = Category::Category();
             $listBar = Brand::Brand();
@@ -208,6 +210,7 @@ class productController extends Controller
             'image' => $destination,
             'sub_image' => $sub_image,
             'name' => $_POST['name'],
+            'alias_sp' => $_POST['alias_sp'],
             'price_old' => $_POST['price_old'],
             'price_new' => $_POST['price_new'],
             'hidden' => $_POST['hidden'],

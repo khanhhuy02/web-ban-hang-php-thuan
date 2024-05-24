@@ -1,7 +1,7 @@
 <?php
 ini_set('display_errors', 'Off');
 session_start();
-// echo $_SESSION['id'] ; 
+// echo $_SESSION['user_id'] ; 
 // $_SESSION['logged_in'] = true;
 use Support\src\Route;
 

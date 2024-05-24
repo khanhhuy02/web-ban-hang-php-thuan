@@ -23,11 +23,13 @@ class LoginController extends Controller
         if ($login['role'] === 1) {
             $_SESSION['role'] = $login['role'];
             $_SESSION['name'] = $login['name'];
-            $_SESSION['id'] = $login['id'];
+            $_SESSION['user_id'] = $login['id'];
 
             redirect('admin');
         } else if ($login['role'] === 0) {
             $_SESSION['role'] = $login['role'];
+            $_SESSION['user_id'] = $login['id'];
+
             redirect('');
         } else {
             redirect('admin/dang-nhap');
