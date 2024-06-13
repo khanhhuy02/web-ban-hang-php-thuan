@@ -111,12 +111,13 @@
         </div>
         <div class="row">
             <div class="col">
-
                 <div class="tab-content">
                     <!-- 1st tab start -->
                     <div class="tab-pane fade show active" id="tab-product-new-arrivals">
                         <div class="row">
-                            <?php foreach ($product as $key => $value) : ?>
+                            <?php
+                          
+                            foreach ($product as $key => $value) : $produc_page = $key ?>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="200">
                                     <!-- Single Prodect -->
                                     <div class="product product_data">
@@ -148,8 +149,20 @@
                                         </div>
                                     </div>
                                 </div>
-                            <?php endforeach ?>
 
+                            <?php endforeach ?>
+                            <nav aria-label="Page navigation example " class="d-flex">
+                                <?php for ($i = 1; $i <= $totalPages; $i++) : ?>
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <span class="page-link">
+                                                <?= $i?>
+                                            </span>
+                                        </li>
+                                    </ul>
+
+                                <?php endfor ?>
+                            </nav>
                         </div>
                     </div>
                     <!-- 1st tab end -->
@@ -1092,4 +1105,37 @@
         })
 
     });
+</script> -->
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- <script>
+    $('.page-item').click(function() {
+        var page = $(this).closest('.pagination').find('.page-link').text();
+        // alert(page)
+        url = page;
+        $.ajax({
+            method: "POST",
+            url: url,
+            dataType: "json",
+            data: {
+                page: page,
+            },
+            success: function(response) {
+           alert(page);
+                location.reload()
+
+            }
+        });
+    });
+</script> -->
+
+<!-- 
+<script>
+    async function name() {
+        let d1 = await fetch("http://localhost/mvc/trang-chu/");
+        let d2 = await d1.json();
+        console.log(d2);
+    }
+    name()
 </script> -->

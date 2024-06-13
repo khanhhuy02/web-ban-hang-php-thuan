@@ -262,49 +262,9 @@
 <!-- Global Vendor, plugins JS -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- <script src="<?= assetss ?>assetPHP/fe.ajax.js"></script> -->
+<script src="<?= assetss ?>assetPHP/fe.ajax.js"></script>
 <script>
-    $(document).ready(function() {
-        $('.add-to-cart').click(function() {
-            var price_new = $(this).closest('.product').find('.price-new').text();
-            var names = $(this).closest('.product').find('.names').text();
-            var image = $(this).closest('.product').find('.image').attr('src');
-            var product_id = $(this).closest('.product').find('.product-id').val();
-            let url = "them-gio-hang";
-            $.ajax({
-                method: "POST",
-                url: url,
-                dataType: "json",
-                data: {
-                    product_id: product_id,
-                    price_new: price_new,
-                    image: image,
-                    names: names,
-                },
-                success: function(response) {
-                    console.log(response);
-                }
-            });
-        });
-
-        $('.delete-to-cart').click(function() {
-            var product_id = $(this).closest('.product-card').find('.product-id').val();
-
-            let url = "/mvc/gio-hang/"+product_id;
-
-            $.ajax({
-                method: "POST", // Change the HTTP method to POST
-                url: url,
-                dataType: "json",
-                data: {
-                    product_id: product_id,
-                },
-                success: function(response) {
-                    console.log(response.responseData);
-                }
-            });
-        });
-    });
+   
 </script>
 
 <!-- Vendor JS -->
@@ -327,7 +287,7 @@
     <script src="<?= assetss ?>assetsUser/js/plugins/ajax-mail.js"></script> -->
 
 <!-- Use the minified version files listed below for better performance and remove the files listed above -->
-<!-- <script src="<?= assetss ?>assetsUser/js/vendor/vendor.min.js"></script> -->
+<script src="<?= assetss ?>assetsUser/js/vendor/vendor.min.js"></script>
 <script src="<?= assetss ?>assetsUser/js/plugins/plugins.min.js"></script>
 
 <!-- Main Js -->

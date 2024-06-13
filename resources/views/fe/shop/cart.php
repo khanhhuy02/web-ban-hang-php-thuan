@@ -9,7 +9,7 @@
                     <div class="col-lg-6  col-md-6 col-sm-12">
                         <!-- breadcrumb-list start -->
                         <ul class="breadcrumb-list text-center text-md-end">
-                            <li class="breadcrumb-item"><a href='index.html'>Home</a></li>
+                            <li class=""><a href='<?=ROOT_URL?>'>Home</a>/</li>
                             <li class="breadcrumb-item active">Cart</li>
                         </ul>
                         <!-- breadcrumb-list end -->
@@ -25,7 +25,7 @@
 <!-- Cart Area Start -->
 <div class="cart-main-area pt-100px pb-100px">
     <div class="container">
-        <h3 class="cart-page-title">Your cart items</h3>
+        <h3 class="cart-page-title">Giỏ hàng </h3>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                 <form action="#">
@@ -43,7 +43,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($filteredCart as $key => $value) { ?>
+                                <?php 
+                                $total_price_product = 0;
+                                foreach ($filteredCart as $key => $value) { ?>
                                     <tr class="product-card">
                                         <td class="product-thumbnail">
                                             <input type="hidden" class="product-id" value="<?= $value['product_id'] ?>">
@@ -53,18 +55,24 @@
                                         <td class="product-price-cart"><span class="amount"><?= $value['price_new'] ?></span></td>
                                         <td class="product-quantity">
                                             <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" type="text" name="qtybutton" value="<?= $value['quantity'] ?>" />
+                                                <input class="cart-plus-minus-box quantity" type="text" name="qtybutton" value="<?= $value['quantity'] ?>" />
                                             </div>
                                         </td>
-                                        <td class="product-subtotal"><?= $value['price_new'] ?></td>
-                                        <td class="product-remove">
-                                            <a href="#"><i class="icon-pencil"></i></a>
+                                        <td class="productSubtotal">
+                                            <?php $total_price = $value['price_new'] * $value['quantity'] ;
+                                                echo $total_price;
+
+                                            ?>
+                                            
                                         </td>
-                                        <td class="delete-to-cart">
-                                            <i class="icon-close"></i>
+                                        <td class="product-remove">
+                                            <!-- <a href="#"><i class="icon-pencil"></i></a> -->
+                                            <span class="delete-to-cart" style="cursor: pointer"> <i class="icon-close"></i></span>
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                <?php 
+                                $total_price_product +=$total_price;
+                            } ?>
                                 <?= $emptyCartMessage ?>
                             </tbody>
                         </table>
@@ -73,18 +81,18 @@
                         <div class="col-lg-12">
                             <div class="cart-shiping-update-wrapper">
                                 <div class="cart-shiping-update">
-                                    <a href="#">Continue Shopping</a>
+                                    <a href="#">Tiếp tục mua hàng</a>
                                 </div>
-                                <div class="cart-clear">
+                                <!-- <div class="cart-clear">
                                     <button>Update Shopping Cart</button>
                                     <a href="#">Clear Shopping Cart</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </form>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 mb-lm-30px">
+                    <!-- <div class="col-lg-4 col-md-6 mb-lm-30px">
                         <div class="cart-tax">
                             <div class="title-wrap">
                                 <h4 class="cart-bottom-title section-bg-gray">Estimate Shipping And Tax</h4>
@@ -126,36 +134,36 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-lm-30px">
+                    </div> -->
+                    <div class="col-lg-6 col-md-6 mb-lm-30px">
                         <div class="discount-code-wrapper">
                             <div class="title-wrap">
-                                <h4 class="cart-bottom-title section-bg-gray">Use Coupon Code</h4>
+                                <h4 class="cart-bottom-title section-bg-gray">Sử dụng mã phiếu giảm giá</h4>
                             </div>
                             <div class="discount-code">
-                                <p>Enter your coupon code if you have one.</p>
+                                <p>Nhập mã phiếu giảm giá của bạn nếu bạn có.</p>
                                 <form>
                                     <input type="text" required="" name="name" />
-                                    <button class="cart-btn-2" type="submit">Apply Coupon</button>
+                                    <button class="cart-btn-2" type="submit">ÁP DỤNG PHIẾU GIẢM GIÁ</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 mt-md-30px">
+                    <div class="col-lg-6 col-md-12 mt-md-30px">
                         <div class="grand-totall">
                             <div class="title-wrap">
-                                <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
+                                <h4 class="cart-bottom-title section-bg-gary-cart">Tổng số giỏ hàng</h4>
                             </div>
-                            <h5>Total products <span>$260.00</span></h5>
+                            <!-- <h5>Total products <span>$260.00</span></h5>
                             <div class="total-shipping">
                                 <h5>Total shipping</h5>
                                 <ul>
                                     <li><input type="checkbox" /> Standard <span>$20.00</span></li>
                                     <li><input type="checkbox" /> Express <span>$30.00</span></li>
                                 </ul>
-                            </div>
-                            <h4 class="grand-totall-title">Grand Total <span>$260.00</span></h4>
-                            <a href='checkout.html'>Proceed to Checkout</a>
+                            </div> -->
+                            <h4 class="grand-totall-title">Tổng giá sản phẩm <span class="total-price-product"><?php echo $total_price_product?></span></h4>
+                            <a href='<?=ROOT_URL?>thanh-toan-tai-khoan'>Thanh toán</a>
                         </div>
                     </div>
                 </div>

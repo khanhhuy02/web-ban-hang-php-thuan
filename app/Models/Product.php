@@ -108,4 +108,55 @@ class Product extends ModelsDatabase
         $result = parent::query($sql);
         return $result;
     }
+
+    // public static function insretOdert($tablet1, $data1, $tablet2, $data2)
+    // {
+    //     $key1 = implode(", ", array_keys($data1));
+    //     $key2 = implode(", ", array_keys($data2));
+
+    //     $item1 = rtrim(str_repeat('?, ', count($data1)), ', ');
+    //     $values = array_values($data1);
+
+    //     $order = "INSERT INTO $tablet1 ($key1) VALUES ($item1)"; // lất giá trị data để khởi tạo tài khoản mới 
+    //     $order_id = parent::execute($order, $values);
+    //     if ($order_id) {
+    //         $item2 = rtrim(str_repeat('?, ', count($data2)), ', ');
+    //         $values = array_values($data2);
+
+    //         $order_item = "INSERT INTO $tablet2 ($key2) VALUES ($item2)"; // lất giá trị data để khởi tạo tài khoản mới 
+    //         return  parent::execute($order_item, $values);
+    //     }
+    // }
+
+
+    public static function insertOrder($table1, $data1)
+    {
+        $key1 = implode(", ", array_keys($data1));
+        $item1 = rtrim(str_repeat('?, ', count($data1)), ', ');
+        $values = array_values($data1);
+
+        $order = "INSERT INTO $table1 ($key1) VALUES ($item1)";
+        $order_id = self::getLastInsertId($order, $values);
+
+        return $order_id;
+    }
+
+    public static function insertOrderItem($table2, $data2)
+    {
+        $key2 = implode(", ", array_keys($data2));
+        $item2 = rtrim(str_repeat('?, ', count($data2)), ', ');
+        $values = array_values($data2);
+
+        $order_item = "INSERT INTO $table2 ($key2) VALUES ($item2)";
+        return self::execute($order_item, $values);
+    }
+
+    
+    public static function totalProduct($table2)
+    {
+    
+        $sql = "SELECT COUNT(*) AS total FROM $table2";
+        return parent::totalProduct($sql);
+    }
+
 }

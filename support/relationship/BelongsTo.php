@@ -23,9 +23,9 @@ class BelongsTo extends database
         return parent::query($spl);
     }
 
-    public static function BelongsToProduct($table1, $table2, $RIMARY_KEY, $FOREIGN_KEY)
+    public static function BelongsToProduct($table1, $table2, $RIMARY_KEY, $FOREIGN_KEY ,$page_start , $page_end)
     {
-        $spl = "SELECT table1.id, table1.categories_id, table1.*, table2.names as name_category, table2.alias_sp as alias_sp_categores FROM $table1 AS table1 INNER JOIN $table2 AS table2 ON table1.$FOREIGN_KEY = table2.$RIMARY_KEY";
+        $spl = "SELECT table1.id, table1.categories_id, table1.*, table2.names as name_category, table2.alias_sp as alias_sp_categores FROM $table1 AS table1 INNER JOIN $table2 AS table2 ON table1.$FOREIGN_KEY = table2.$RIMARY_KEY limit $page_start OFFSET $page_end";
         return parent::query($spl);
     }
     public static function BelongsToDetailProduct($table1, $table2, $RIMARY_KEY, $FOREIGN_KEY, $linkCate, $linkName)
@@ -33,9 +33,16 @@ class BelongsTo extends database
         $spl = "SELECT table1.id, table1.categories_id, table1.*,table2.names as name_category, table2.alias_sp AS alias_sp_categores  FROM $table1 AS table1 INNER JOIN $table2 AS table2 ON table1.$RIMARY_KEY = table2.$FOREIGN_KEY WHERE table2.alias_sp = '$linkCate'and table1.alias_sp='$linkName'";
         return parent::query($spl);
     }
-    public static function BelongsToDetailComment($table1, $table2, $FOREIGN_KEY, $RIMARY_KEY, $product)
+
+    public static function BelongsShop($table1, $table2, $RIMARY_KEY, $FOREIGN_KEY, $alias_sp,$page_start , $page_end)
     {
-        $spl = "SELECT table1.id, table1.*,table2.id as id_comment, table2.name, table2.email, table2.role FROM $table1 AS table1 INNER JOIN $table2 AS table2 ON table1.$FOREIGN_KEY = table2.$RIMARY_KEY WHERE table1.products_id=$product";
+        $spl = "SELECT table1.id, table1.categories_id, table1.*,table2.names as name_category, table2.alias_sp AS alias_sp_categores  FROM $table1 AS table1 INNER JOIN $table2 AS table2 ON table1.$RIMARY_KEY = table2.$FOREIGN_KEY WHERE table2.alias_sp = '$alias_sp' limit $page_start OFFSET $page_end";
         return parent::query($spl);
     }
+    public static function BelongsToDetailComment($table1, $table2, $FOREIGN_KEY, $RIMARY_KEY, $product)
+    {
+        $spl = "SELECT table1.id, table1.*,table2.id as id_comment, table2.name, table2.email, table2.role FROM $table1 AS table1 INNER JOIN $table2 AS table2 ON table1.$FOREIGN_KEY = table2.$RIMARY_KEY WHERE table1.products_id= $product" ;
+        return parent::query($spl);
+    }
+
 }

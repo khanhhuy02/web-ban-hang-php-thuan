@@ -35,14 +35,14 @@
     <link rel="apple-touch-icon" href="<?=assetss?>assetsUser/images/favicon/favicon.png" />
     <meta name="msapplication-TileImage" content="<?=assetss?>assetsUser/images/favicon/favicon.png" />
     <!-- Structured Data  -->
-    <script type="application/ld+json">
+    <!-- <script type="application/ld+json">
         {
             "@context": "http://schema.org",
             "@type": "WebSite",
             "name": "Replace_with_your_site_title",
             "url": "Replace_with_your_site_URL"
         }
-    </script>
+    </script> -->
 
     <!-- vendor css (Bootstrap & Icon Font) -->
     <!-- <link rel="stylesheet" href="<?=assetss?>assetsUser/css/vendor/bootstrap.min.css" />
@@ -61,7 +61,6 @@
     <link rel="stylesheet" href="<?=assetss?>assetsUser/css/vendor/vendor.min.css" />
     <link rel="stylesheet" href="<?=assetss?>assetsUser/css/plugins/plugins.min.css" />
     <link rel="stylesheet" href="<?=assetss?>assetsUser/css/style.min.css">
-
     <!-- Main Style -->
     <!-- <link rel="stylesheet" href="<?=assetss?>assetsUser/css/style.css" /> -->
 

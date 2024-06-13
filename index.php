@@ -3,7 +3,10 @@ ini_set('display_errors', 'Off');
 session_start();
 // echo $_SESSION['user_id'] ; 
 // $_SESSION['logged_in'] = true;
+
 use Support\src\Route;
+
+
 
 include  __DIR__ . "/routes/autoload.php";
 include  __DIR__ . "/config/Constant.php";
@@ -69,10 +72,7 @@ if ($routeMatched) {
         }
         call_user_func_array([$controller, $methodName], $arguments);
     }
-} 
+}
 // else {
 //     redirect("trang-khong-ton-tai");
 // }
-?>
-
-

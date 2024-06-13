@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\fronend\shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\comment;
 use App\Models\Product;
 use Support\relationship\BelongsTo;
@@ -90,7 +91,8 @@ class ShopController extends Controller
     public function addCart()
     {
         $productId = $_POST['product_id'];
-        $quantity = 1;
+        $quantity = $_POST['quantity'];
+        // $quantity = 1;
 
         if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
             $cart = $_SESSION['cart'];
@@ -144,6 +146,34 @@ class ShopController extends Controller
         }
     }
 
+    public function quantityss($productId)
+    {
+        if (isset($_POST["product_id"])) {
+            $productId = $_POST["product_id"];
+            $quantity = $_POST["quantity"];
+
+            if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+                $cart = $_SESSION['cart'];
+
+                foreach ($cart as $key => $value) {
+                    if ($value['product_id'] === $productId) {
+                        $cart[$key]['quantity'] = intval($quantity);
+                    }
+                }
+                $_SESSION['cart'] = $cart;
+                $responseData = [
+                    'success' => true,
+                    'message' => 'Quantity updated successfully',
+                    "cart" => $_SESSION['cart']
+                ];
+                // header('Content-Type: application/json');
+
+                echo json_encode($responseData);
+                // var_dump($responseData);
+                // exit; // Thêm dòng này để ngăn mã PHP tiếp tục thực thi
+            }
+        }
+    }
     public function deleteCart($productId)
     {
         if (isset($_POST["product_id"])) {
@@ -171,6 +201,7 @@ class ShopController extends Controller
                     'success' => false,
                     'message' => 'Cart is empty'
                 ];
+
                 echo json_encode($responseData);
             }
         } else {
@@ -180,5 +211,98 @@ class ShopController extends Controller
             ];
             echo json_encode($responseData);
         }
+    }
+
+    public function checkOut()
+    {
+        $titleTag = "Thanh toán giỏ hàng";
+        $checkUser = $_SESSION['user_id'];
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+            $cart = $_SESSION['cart'];
+            $filteredCart = array_filter($cart, function ($item) use ($checkUser) {
+                // use là khai báo và truy cập các biến từ phạm vi lồng nhau hoặc kèm theo trong một hàm hoặc bao đóng. 
+                //Nó cho phép bạn nhập các biến một cách rõ ràng vào phạm vi hiện tại, 
+                // cho phép bạn sử dụng chúng mà không cần phải tham chiếu rõ ràng phạm vi kèm theo của chúng.
+                // ví dụ use (variable1, variable2, ..., variableN);
+                return $item['user_id'] === $checkUser;
+            });
+            return $this->view("fe.shop.checkout", [
+                'titleTag' => $titleTag,
+                "cart" => $filteredCart
+            ]);
+        }
+    }
+
+    public function cartSuccess()
+    {
+        $checkUser = $_SESSION['user_id'];
+
+        if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
+
+
+            $cart = $_SESSION['cart'];
+            $filteredCart = array_filter($cart, function ($item) use ($checkUser) {
+                return $item['user_id'] === $checkUser;
+            });
+
+            if ($filteredCart) {
+                $data1 = [
+                    'users_id' => $checkUser,
+                    'name' => $_POST['name'],
+                    'addess' => $_POST['addess'],
+                    'phone' => $_POST['phone'],
+                    'email' => $_POST['email'],
+                    'note' => $_POST['note'],
+                ];
+            }
+            $order_id = Product::insertOrder('orders', $data1); // Thêm đơn hàng và lấy ID của đơn hàng
+
+            if ($order_id) {
+                foreach ($filteredCart as $item) {
+                    $data2 = [
+                        'orders_id' => $order_id,
+                        'products_id' => $item['product_id'],
+                        'quantity' => $item['quantity'],
+                        'product_price' => $item['price_new'],
+                    ];
+
+                    Product::insertOrderItem('order_items', $data2); // Thêm mục đơn hàng
+                }
+                redirect("gio-hang");
+            }
+        }
+    }
+    public function shop()
+    {
+
+        $titleTag = "cửa hàng";
+
+        $product  = BelongsTo::BelongsToProduct("products", "categories", "id", "categories_id",  8, 0);
+        $list  = Category::Category("categories");
+        return $this->view(
+            "fe.shop.shop-product",
+            [
+                "titleTag" => $titleTag,
+                "product" => $product,
+                'list' => $list
+
+            ]
+        );
+    }
+
+    public function shops($alias_sp)
+    {
+        $titleTag = "cửa hàng";
+        $product = BelongsTo::BelongsShop("products", "categories", "categories_id", "id", $alias_sp, 8, 0);
+        $list  = Category::Category("categories");
+        return $this->view(
+            "fe.shop.shop-product",
+            [
+                "titleTag" => $titleTag,
+                "product" => $product,
+                'list' => $list
+
+            ]
+        );
     }
 }

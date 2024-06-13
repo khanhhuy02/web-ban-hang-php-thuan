@@ -39,7 +39,7 @@ class database
         }
     }
     // Hàm thực hiện truy vấn 1 hàng 
-    public static function queryOne($sql,$params)
+    public static function queryOne($sql, $params)
     {
         self::connect();
         try {
@@ -65,6 +65,36 @@ class database
             die("Lỗi truy vấn: " . $e->getMessage());
         } finally {
             $conn = null;
+        }
+    }
+
+    //  lấy theo id
+    public static function getLastInsertId($sql, $params = [])
+    {
+        self::connect();
+
+        try {
+            $stmt = self::$conn->prepare($sql);
+            $stmt->execute($params);
+            $lastInsertId = self::$conn->lastInsertId();
+            return $lastInsertId;
+        } catch (PDOException $e) {
+            die("Lỗi truy vấn: " . $e->getMessage());
+        } finally {
+            $conn = null;
+        }
+    }
+
+    public static function totalProduct($sql)
+    {
+        self::connect();
+        try {
+            $stmt = self::$conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+           return  $totalCount = $result['total'];
+        } catch (PDOException $e) {
+            die("Lỗi truy vấn: " . $e->getMessage());
         }
     }
 }

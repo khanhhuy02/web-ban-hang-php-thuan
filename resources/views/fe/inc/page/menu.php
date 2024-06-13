@@ -7,7 +7,7 @@
                 foreach ($list as $key => $value) {
                 ?>
                     <div class=" swiper-slide">
-                        <a class='category-inner ' href='shop-left-sidebar.html'>
+                        <a class='category-inner ' href='<?=ROOT_URL?>cua-hang/<?=$value['alias_sp']?>'>
                             <div class="category-single-item">
                                 <img src="<?= assetss?>assetsUser/images/icons/1.png" alt="">
                                 <span class="title"><?=$value['names']?></span>

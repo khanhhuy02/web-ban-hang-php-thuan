@@ -47,15 +47,23 @@ if ($authCheck->isLoggedIn() && $authCheck->isAdmin()) {
 // Route::get("dang-ky", [new LoginController, 'register']);
 // Route::post("dang-ky", [new LoginController, 'creRegister']);
 // trang chủ 
-Route::get("{cate}/{name}", [new ShopController, 'detail']);// 
+Route::get("san-pham/{cate}/{name}", [new ShopController, 'detail']);
 Route::get("gio-hang", [new ShopController, 'cart']);
 Route::post("them-gio-hang", [new ShopController, 'addCart']);
 Route::post("gio-hang/{idProduct}", [new ShopController, 'deleteCart']);
+Route::get("thanh-toan-tai-khoan",[new ShopController,"checkOut"]);
+Route::post("thanh-toan-tai-khoan",[new ShopController,"cartSuccess"]);
+Route::post("so-luong-tang-giam/{productId}",[new ShopController,"quantityss"]);
+
+Route::get("cua-hang", [new ShopController, "shop"]);
+Route::get("cua-hang/{alias_sp}", [new ShopController, "shops"]);
 
 
 Route::post("danh-gia", [new HomeController, 'evaluate']);
+Route::get("trang-chu", [new HomeController, 'homeProduct']);
 
 Route::get("", [new HomeController, 'index']);
+// Route::get("/{page}", [new HomeController, 'index']);
 // chi tiết sản phẩm
 
 // Route::get("/{cate}/{name}", [new HomeController, 'detail']);
@@ -74,6 +82,7 @@ Route::get("dang-nhap", [new LoginUresController, 'index']);
 Route::post("dang-nhap", [new LoginUresController, 'login']);
 Route::post("dang-ky", [new LoginUresController, 'crelogin']);
 Route::get("logout", [new LoginUresController, 'logout']);
+
 
 // user profile 
 Route::get("tai-khoan-cua-toi", [new UsersUsersController, 'index']);

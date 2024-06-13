@@ -36,14 +36,17 @@ spl_autoload_register(function ($className) {
 
     if (file_exists($namespaceModel)) {
         require_once $namespaceModel;
+       
     }
     $nameControllers = str_replace("routes", "", $namespaceModel);
     if (file_exists($nameControllers)) {
         require_once $nameControllers;
+
     }
     $nameRoute = str_replace("\\app\\", "", $nameControllers);
     if (file_exists($nameRoute)) {
         require_once $nameRoute;
+  
     }
 
 });
