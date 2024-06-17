@@ -4,6 +4,7 @@
 
 
 <!-- OffCanvas Cart Start -->
+
 <div id="offcanvas-cart" class="offcanvas offcanvas-cart">
     <div class="inner">
         <div class="head">
@@ -12,33 +13,20 @@
         </div>
         <div class="body customScroll">
             <ul class="minicart-product-list">
-                <li>
-                    <a class='image' href='single-product.html'><img src="<?= assetss ?>assetsUser/images/product-image/1.jpg" alt="Cart product Image"></a>
-                    <div class="content">
-                        <a class='title' href='single-product.html'>Walnut Cutting Board</a>
-                        <span class="quantity-price">Số lượng<span class="amount"> 10</span></span>
-                        <span class="quantity-price">Giá <span class="amount"> 100.000.000</span> VND</span>
-                        <a href="#" class="remove"><i class="fa-solid fa-trash"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <a class='image' href='single-product.html'><img src="<?= assetss ?>assetsUser/images/product-image/2.jpg" alt="Cart product Image"></a>
-                    <div class="content">
-                        <a class='title' href='single-product.html'>Lucky Wooden Elephant</a>
-                        <span class="quantity-price">Số lượng<span class="amount"> 10</span></span>
-                        <span class="quantity-price">Giá <span class="amount"> 100.000.000</span> VND</span>
-                        <a href="#" class="remove"><i class="fa-solid fa-trash"></i></a>
-                    </div>
-                </li>
-                <li>
-                    <a class='image' href='single-product.html'><img src="<?= assetss ?>assetsUser/images/product-image/3.jpg" alt="Cart product Image"></a>
-                    <div class="content">
-                        <a class='title' href='single-product.html'>Fish Cut Out Set</a>
-                        <span class="quantity-price">Số lượng<span class="amount"> 10</span></span>
-                        <span class="quantity-price">Giá <span class="amount"> 100.000.000</span> VND</span>
-                        <a href="#" class="remove"><i class="fa-solid fa-trash"></i></a>
-                    </div>
-                </li>
+                <?php
+                $total_price_product = 0;
+                foreach ($filteredCart as $key => $value) {   ?>
+                
+                    <li>
+                        <a class='image' href='single-product.html'><img src="<?= $value['image'] ?>" alt="Cart product Image"></a>
+                        <div class="content">
+                            <a class='title' href='single-product.html'><?= $value['names'] ?></a>
+                            <span class="quantity-price">Số lượng<span class="amount"> <?= $value['quantity'] ?></span></span>
+                            <span class="quantity-price">Giá <span class="amount"> <?= $value['price_new'] ?></span> VND</span>
+                            <a href="#" class="remove"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                    </li>
+                <?php } ?>
             </ul>
         </div>
         <div class="foot">
@@ -116,7 +104,7 @@
                     <div class="tab-pane fade show active" id="tab-product-new-arrivals">
                         <div class="row">
                             <?php
-                          
+
                             foreach ($product as $key => $value) : $produc_page = $key ?>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-30px" data-aos="fade-up" data-aos-delay="200">
                                     <!-- Single Prodect -->
@@ -156,7 +144,7 @@
                                     <ul class="pagination">
                                         <li class="page-item">
                                             <span class="page-link">
-                                                <?= $i?>
+                                                <?= $i ?>
                                             </span>
                                         </li>
                                     </ul>
@@ -1109,7 +1097,7 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<!-- <script>
+<script>
     $('.page-item').click(function() {
         var page = $(this).closest('.pagination').find('.page-link').text();
         // alert(page)
@@ -1122,13 +1110,13 @@
                 page: page,
             },
             success: function(response) {
-           alert(page);
+                alert(page);
                 location.reload()
 
             }
         });
     });
-</script> -->
+</script>
 
 <!-- 
 <script>
